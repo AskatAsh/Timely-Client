@@ -1,7 +1,7 @@
 
 const Home = () => {
     return (
-        <div>
+        <div className="h-screen">
             Home page
             <img src="../../../src/assets/icons/timely-logo.png" alt="timely delivery logo" />
         </div>
