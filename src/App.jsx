@@ -1,14 +1,26 @@
+import { RouterProvider } from "react-router-dom";
+import router from "./routes/router";
+import { HelmetProvider } from "react-helmet-async";
+import AuthProvider from "./providers/AuthProvider";
+import {
+  QueryClient,
+  QueryClientProvider,
+} from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 function App() {
-
   return (
     <>
-
-      <h1 className='text-4xl font-bold'>Timely | Home</h1>
-      <p>A delivery platform that delivers parcels on time.</p>
-      
+      <AuthProvider>
+        <QueryClientProvider client={queryClient}>
+          <HelmetProvider>
+            <RouterProvider router={router}></RouterProvider>
+          </HelmetProvider>
+        </QueryClientProvider>
+      </AuthProvider>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
