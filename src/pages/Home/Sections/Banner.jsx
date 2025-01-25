@@ -35,7 +35,7 @@ const Banner = () => {
               placeholder="search here..."
               className="border-secondary"
             />
-            <Button type="submit" className="bg-primary-900 text-text hover:bg-primary">
+            <Button type="submit" className="bg-accent-900 text-text hover:bg-accent">
               Search
             </Button>
           </div>
