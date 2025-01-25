@@ -4,21 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* @theme {
-  --font-display: "Quicksand", "sans-serif";
-  --color-text: #050316;
-  --color-background: #fbfbfe;
-  --color-primary: #6d12ce;
-  --color-secondary: #dddbff;
-  --color-accent: #dd3afe;
-
-  --color-textDark: #eae9fc;
-  --color-backgroundDark: #010104;
-  --color-primaryDark: #8c31ed;
-  --color-secondaryDark: #020024;
-  --color-accentDark: #a501c6;
-} */
-
 /* ============================= */
 @layer base {
   :root {
