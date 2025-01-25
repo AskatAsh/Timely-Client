@@ -5,12 +5,13 @@ import Footer from "../components/common/Footer";
 
 const MainLayout = () => {
   return (
-    <div className="bg-gray-100 font-display">
+    <div className="bg-background font-display">
       {/* header section with navigation */}
       <Navbar />
       <main>
         <Outlet />
       </main>
+      {/* footer section */}
       <Footer />
     </div>
   );

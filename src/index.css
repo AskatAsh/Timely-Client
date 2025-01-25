@@ -1,7 +1,42 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap");
 
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@theme {
+/* @theme {
+  --font-display: "Quicksand", "sans-serif";
+  --color-text: #050316;
+  --color-background: #fbfbfe;
+  --color-primary: #6d12ce;
+  --color-secondary: #dddbff;
+  --color-accent: #dd3afe;
+
+  --color-textDark: #eae9fc;
+  --color-backgroundDark: #010104;
+  --color-primaryDark: #8c31ed;
+  --color-secondaryDark: #020024;
+  --color-accentDark: #a501c6;
+} */
+
+/* ============================= */
+@layer base {
+  :root {
+    /* Light theme colors */
     --font-display: "Quicksand", "sans-serif";
+    --color-text: #050316;
+    --color-background: #fbfbfe;
+    --color-primary: #6d12ce;
+    --color-secondary: #dddbff;
+    --color-accent: #dd3afe;
+  }
+
+  .dark {
+    /* Dark theme colors */
+    --color-text: #eae9fc;
+    --color-background: #010104;
+    --color-primary: #8c31ed;
+    --color-secondary: #020024;
+    --color-accent: #a501c6;
+  }
 }
