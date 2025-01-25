@@ -50,7 +50,7 @@ Button.displayName = "Button"
 Button.propTypes = {
   className: PropTypes.string,
   variant: PropTypes.object,
-  size: PropTypes.object,
+  size: PropTypes.string,
   asChild: PropTypes.bool,
 }
 

@@ -1,10 +1,16 @@
+import { Helmet } from "react-helmet-async";
+import Banner from "./Sections/Banner";
 
 const Home = () => {
     return (
-        <div className="h-screen">
-            Home page
-            <img src="../../../src/assets/icons/timely-logo.png" alt="timely delivery logo" />
-        </div>
+        <>
+            <Helmet>
+                <title>Timely | Home</title>
+            </Helmet>
+
+            {/* Banner section */}
+            <Banner />
+        </>
     );
 };
 
