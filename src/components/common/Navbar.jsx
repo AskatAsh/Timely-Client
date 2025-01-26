@@ -21,6 +21,7 @@ const Navbar = () => {
 
   // logout handler
   const handleLogOut = () => {
+    setIsUserMenuOpen(false);
     logOut()
       .then(() => {
         toast.success("Logged out Successfully.", {
@@ -31,7 +32,6 @@ const Navbar = () => {
           theme: "light",
           transition: Bounce,
         });
-        alert("user logged out.");
       })
       .catch((error) => console.log(error));
   };
@@ -152,7 +152,7 @@ const Navbar = () => {
               <MdOutlineDarkMode />
             )}
           </div>
-          {!user && !user?.email ? (
+          {user && user?.email ? (
             <>
               <NavLink
                 to="/dashboard/cart"
@@ -179,7 +179,7 @@ const Navbar = () => {
               onClick={() => setIsMenuOpen(false)}
               //   className="bg-accent text-sm text-text px-4 py-1 rounded-full font-medium"
             >
-              <Button className="rounded-full" variant="default" size="sm">
+              <Button className="rounded-full text-text" variant="default" size="sm">
                 Login
               </Button>
             </NavLink>
@@ -214,7 +214,7 @@ const Navbar = () => {
       {/* User menu modal */}
       {isUserMenuOpen && (
         <ul className="absolute top-3/4 right-5 z-40 shadow-md rounded-lg flex flex-col gap-3 max-w-fit p-3 text-sm bg-background">
-          <li className="text-gray-400">User Name</li>
+          <li className="text-gray-400">{user?.displayName || user?.email || "User"}</li>
           <li>
             <Link className="text-text font-semibold hover:text-primary">Dashboard</Link>
           </li>

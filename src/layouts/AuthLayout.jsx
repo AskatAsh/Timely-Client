@@ -1,11 +1,13 @@
 // import PropTypes from 'prop-types';
 
 import { Outlet } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 const AuthLayout = () => {
     return (
         <main>
             <Outlet />
+            <ToastContainer />
         </main>
     );
 };
