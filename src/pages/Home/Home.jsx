@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import Banner from "./Sections/Banner";
 import OurFeatures from "./Sections/OurFeatures";
+import Stats from "./Sections/Stats";
 
 const Home = () => {
     return (
@@ -14,6 +15,9 @@ const Home = () => {
 
             {/* Out features section */}
             <OurFeatures />
+
+            {/* Timely stats */}
+            <Stats />
         </>
     );
 };
