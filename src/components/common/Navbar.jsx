@@ -216,7 +216,7 @@ const Navbar = () => {
         <ul className="absolute top-3/4 right-5 z-40 shadow-md rounded-lg flex flex-col gap-3 max-w-fit p-3 text-sm bg-background">
           <li className="text-gray-400">{user?.displayName || user?.email || "User"}</li>
           <li>
-            <Link className="text-text font-semibold hover:text-primary">Dashboard</Link>
+            <Link to='/dashboard' className="text-text font-semibold hover:text-primary">Dashboard</Link>
           </li>
           {/* sign out button */}
           <li className="mt-1">
