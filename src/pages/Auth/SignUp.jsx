@@ -3,17 +3,17 @@ import { useForm } from "react-hook-form";
 import { Bounce, toast } from "react-toastify";
 import { Helmet } from "react-helmet-async";
 import useAuth from "../../hooks/useAuth";
-// import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import signupImage from "../../assets/images/Sign up.gif";
 import useSocialLogin from "./../../hooks/useSocialLogin";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { FaGoogle } from "react-icons/fa";
+import useAxiosPublic from "./../../hooks/useAxiosPublic";
 
 const SignUp = () => {
   const { handleSocialLogin, loading } = useSocialLogin();
-  //   const axiosPublic = useAxiosPublic();
-  //   const navigate = useNavigate();
+  const axiosPublic = useAxiosPublic();
+  const navigate = useNavigate();
   const { createUser, updateUserProfile } = useAuth();
   const {
     register,
@@ -29,39 +29,30 @@ const SignUp = () => {
       console.log(loggedUser);
       updateUserProfile(data.name, data.photoURL)
         .then(() => {
-          reset();
-          toast.success("User created successfully.", {
-            position: "top-right",
-            autoClose: 1500,
-            hideProgressBar: false,
-            closeOnClick: true,
-            theme: "light",
-            transition: Bounce,
-          });
-          //   const userInfo = {
-          //     name: data.name,
-          //     email: data.email,
-          //   };
-          //   axiosPublic
-          //     .post("/users", userInfo)
-          //     .then((res) => {
-          //       // console.log(res);
-          //       if (res.data?.acknowledged && res.data?.insertedId) {
-          //         reset();
-          //         toast.success("User created successfully.", {
-          //           position: "top-right",
-          //           autoClose: 1500,
-          //           hideProgressBar: false,
-          //           closeOnClick: true,
-          //           theme: "light",
-          //           transition: Bounce,
-          //         });
-          //         navigate("/");
-          //       }
-          //     })
-          //     .catch((error) => {
-          //       console.log(error);
-          //     });
+          const userInfo = {
+            name: data.name,
+            email: data.email,
+          };
+          axiosPublic
+            .post("/users", userInfo)
+            .then((res) => {
+              // console.log(res);
+              if (res.data?.acknowledged && res.data?.insertedId) {
+                reset();
+                toast.success("User created successfully.", {
+                  position: "top-right",
+                  autoClose: 1500,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  theme: "light",
+                  transition: Bounce,
+                });
+                navigate("/");
+              }
+            })
+            .catch((error) => {
+              console.log(error);
+            });
         })
         .catch((error) => console.log(error));
     });
