@@ -10,6 +10,7 @@ import { RiMenu3Fill } from "react-icons/ri";
 import { MdOutlineDarkMode } from "react-icons/md";
 import { BsLightningCharge } from "react-icons/bs";
 import { Button } from "../ui/button";
+import { Bounce, toast } from "react-toastify";
 
 const Navbar = () => {
   const [isSticky, setIsSticky] = useState(false);
@@ -22,14 +23,14 @@ const Navbar = () => {
   const handleLogOut = () => {
     logOut()
       .then(() => {
-        // toast.success("Logged out Successfully.", {
-        //   position: "top-right",
-        //   autoClose: 1500,
-        //   hideProgressBar: false,
-        //   closeOnClick: true,
-        //   theme: "light",
-        //   transition: Bounce,
-        // });
+        toast.success("Logged out Successfully.", {
+          position: "top-right",
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          theme: "light",
+          transition: Bounce,
+        });
         alert("user logged out.");
       })
       .catch((error) => console.log(error));
