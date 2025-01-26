@@ -6,6 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import useAuth from "./../../../hooks/useAuth";
 import useAxiosSecure from "./../../../hooks/useAxiosSecure";
 import { SnackbarProvider, enqueueSnackbar } from "notistack";
+import { format } from "date-fns";
 
 const BookParcel = () => {
   const axiosSecure = useAxiosSecure();
@@ -14,25 +15,30 @@ const BookParcel = () => {
     register,
     handleSubmit,
     formState: { errors },
-    reset
+    reset,
   } = useForm();
 
+  const today = format(new Date(), "yyyy-MM-dd");
+
   const onSubmit = async (data) => {
+
     const deliveryData = {
       ...data,
       userName: user?.displayName,
       userEmail: user?.email,
-      status: 'pending'
+      status: "pending",
+      bookingDate: today,
     };
-    // console.log("Form Data:", deliveryData);
+    console.log("Form Data:", deliveryData);
     // Add API call or form submission logic here
     const response = await axiosSecure.post("/bookADelivery", deliveryData);
     // console.log(response.data);
+
+    // show success popup
     if (response.data.insertedId) {
-        // show success popup
-        reset();
-        enqueueSnackbar("Booked Delivery Successfully!", { variant: "success" });
-      }
+      reset();
+      enqueueSnackbar("Booked Delivery Successfully!", { variant: "success" });
+    }
   };
 
   return (
@@ -45,11 +51,7 @@ const BookParcel = () => {
         }}
       />
       <div>
-        <h2
-          className="text-3xl font-bold mb-6 text-center"
-        >
-          Book a Parcel
-        </h2>
+        <h2 className="text-3xl font-bold mb-6 text-center">Book a Parcel</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid sm:grid-cols-2 gap-5">
             <div>
@@ -168,6 +170,7 @@ const BookParcel = () => {
               <Input
                 id="deliveryDate"
                 type="date"
+                min={today}
                 {...register("deliveryDate", {
                   required: "Delivery date is required.",
                 })}
