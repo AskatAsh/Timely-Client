@@ -35,7 +35,7 @@ const Login = () => {
           transition: Bounce,
         });
         form.reset();
-        //   navigate(from, { replace: true });
+        navigate(from, { replace: true });
       }
     });
   };
