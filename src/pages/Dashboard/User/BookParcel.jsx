@@ -4,28 +4,53 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import useAuth from "./../../../hooks/useAuth";
+import useAxiosSecure from "./../../../hooks/useAxiosSecure";
+import { SnackbarProvider, enqueueSnackbar } from "notistack";
 
 const BookParcel = () => {
+  const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log("Form Data:", data);
+  const onSubmit = async (data) => {
+    const deliveryData = {
+      ...data,
+      userName: user?.displayName,
+      userEmail: user?.email,
+      status: 'pending'
+    };
+    // console.log("Form Data:", deliveryData);
     // Add API call or form submission logic here
-    
+    const response = await axiosSecure.post("/bookADelivery", deliveryData);
+    // console.log(response.data);
+    if (response.data.insertedId) {
+        // show success popup
+        reset();
+        enqueueSnackbar("Booked Delivery Successfully!", { variant: "success" });
+      }
   };
 
   return (
     <section className="max-w-3xl mx-auto w-full mt-8">
+      <SnackbarProvider
+        autoHideDuration={2000}
+        anchorOrigin={{
+          vertical: "center",
+          horizontal: "center",
+        }}
+      />
       <div>
-        <h2 className="text-3xl font-bold mb-6 text-center">Book a Parcel</h2>
-        <form
-          onSubmit={handleSubmit(onSubmit)}
+        <h2
+          className="text-3xl font-bold mb-6 text-center"
         >
+          Book a Parcel
+        </h2>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid sm:grid-cols-2 gap-5">
             <div>
               <Label htmlFor="name">Name</Label>
@@ -210,7 +235,9 @@ const BookParcel = () => {
             )}
           </div>
 
-          <Button type="submit" className="w-full">Submit</Button>
+          <Button type="submit" className="w-full">
+            Submit
+          </Button>
         </form>
       </div>
     </section>
