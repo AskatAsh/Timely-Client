@@ -5,7 +5,6 @@ import { Helmet } from "react-helmet-async";
 import useAuth from "../../hooks/useAuth";
 // import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import signupImage from "../../assets/images/Sign up.gif";
-import googleIcon from "../../assets/icons/google.svg";
 import useSocialLogin from "./../../hooks/useSocialLogin";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -73,7 +72,7 @@ const SignUp = () => {
       <Helmet>
         <title>Timely | Sign Up</title>
       </Helmet>
-      <div className="bg-transperant  w-full max-w-5xl flex flex-col items-center mx-3">
+      <div className="bg-transperant w-full max-w-5xl flex flex-col items-center mx-3">
         {/* Top Side - Illustration */}
         <div className="flex items-center justify-center bg-transperant rounded-2xl overflow-hidden mb-8">
           <img

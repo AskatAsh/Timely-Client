@@ -179,7 +179,7 @@ const Navbar = () => {
               onClick={() => setIsMenuOpen(false)}
               //   className="bg-accent text-sm text-text px-4 py-1 rounded-full font-medium"
             >
-              <Button className="rounded-full text-text" variant="default" size="sm">
+              <Button className="rounded-full text-text bg-primary-500" variant="default" size="sm">
                 Login
               </Button>
             </NavLink>
