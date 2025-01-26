@@ -27,7 +27,7 @@ const Dashboard = () => {
     <div className="sm:flex">
       {/* sidbar open icon for small device */}
       <button
-        className="lg:hidden fixed top-4 right-4 text-text"
+        className="md:hidden fixed top-4 right-4 text-text"
         onClick={() => setOpenSidebar(true)}
         aria-label="Open Sidebar"
       >
@@ -50,7 +50,7 @@ const Dashboard = () => {
           <IoCloseCircleOutline size={32} />
         </button>
         <ul
-          className={`menu overflow-y-auto flex-nowrap transition-all duration-300 sm:p-4 h-full md:w-52 lg:w-64 overflow-hidden absolute md:static z-50 bg-primary-400 ${
+          className={`menu overflow-y-auto flex-nowrap transition-all duration-300 sm:p-4 h-full md:w-52 lg:w-64 overflow-hidden absolute md:static z-50 bg-primary-400 backdrop-blur-md ${
             openSidebar ? "w-52 sm:w-64 p-4" : "w-0 p-0"
           }`}
         >

@@ -18,6 +18,8 @@ const Navbar = () => {
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const { user, logOut } = useContext(AuthContext);
   const { theme, toggleTheme } = useTheme();
+  const isAdmin = false;
+  const isDeliveryman = false;
 
   // logout handler
   const handleLogOut = () => {
@@ -216,7 +218,7 @@ const Navbar = () => {
         <ul className="absolute top-3/4 right-5 z-40 shadow-md rounded-lg flex flex-col gap-3 max-w-fit p-3 text-sm bg-background">
           <li className="text-gray-400">{user?.displayName || user?.email || "User"}</li>
           <li>
-            <Link to='/dashboard' className="text-text font-semibold hover:text-primary">Dashboard</Link>
+            <Link state={{role: `${isAdmin ? 'Admin': isDeliveryman ? 'Deliveryman': 'User'}`}} to={`/dashboard/${isAdmin ? 'adminDashboard': isDeliveryman ? 'myDeliverList': 'userProfile'}`} className="text-text font-semibold hover:text-primary">Dashboard</Link>
           </li>
           {/* sign out button */}
           <li className="mt-1">

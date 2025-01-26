@@ -5,6 +5,7 @@ import MainLayout from "./../layouts/MainLayout";
 import Home from "./../pages/Home/Home";
 import Login from "./../pages/Auth/Login";
 import SignUp from "./../pages/Auth/SignUp";
+import UserProfile from "@/pages/Dashboard/User/UserProfile";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,13 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <Dashboard />,
+    children: [
+      // user routes
+      {
+        path: 'userProfile',
+        element: <UserProfile />
+      }
+    ]
   },
 ]);
 export default router;
