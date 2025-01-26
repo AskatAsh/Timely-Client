@@ -35,8 +35,8 @@ const Dashboard = () => {
       </button>
       {/* dashboard side bar */}
       <aside
-        className={`min-h-screen absolute md:static z-10 bg-[#00000050] transition-all duration-300 ${
-          openSidebar ? "overflow-visible w-full" : "overflow-hidden"
+        className={`min-h-screen absolute md:static z-10 transition-all duration-300 ${
+          openSidebar ? "overflow-visible w-full bg-[#00000050]" : "overflow-hidden"
         }`}
       >
         {/* sidebar close icon */}

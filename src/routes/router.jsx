@@ -5,7 +5,8 @@ import MainLayout from "./../layouts/MainLayout";
 import Home from "./../pages/Home/Home";
 import Login from "./../pages/Auth/Login";
 import SignUp from "./../pages/Auth/SignUp";
-import UserProfile from "@/pages/Dashboard/User/UserProfile";
+import BookParcel from './../pages/Dashboard/User/BookParcel';
+import UserProfile from './../pages/Dashboard/User/UserProfile';
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
       {
         path: 'userProfile',
         element: <UserProfile />
+      },
+      {
+        path: 'bookParcel',
+        element: <BookParcel />
       }
     ]
   },
