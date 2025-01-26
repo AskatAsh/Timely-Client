@@ -25,7 +25,7 @@ const Navbar = () => {
     logOut()
       .then(() => {
         toast.success("Logged out Successfully.", {
-          position: "top-right",
+          position: "top-center",
           autoClose: 1500,
           hideProgressBar: false,
           closeOnClick: true,

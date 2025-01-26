@@ -1,5 +1,4 @@
 import * as React from "react"
-import PropTypes from 'prop-types';
 import { Slot } from "@radix-ui/react-slot"
 import { cva } from "class-variance-authority";
 
@@ -44,16 +43,6 @@ const Button = React.forwardRef(({ className, variant, size, asChild = false, ..
   );
 })
 Button.displayName = "Button"
-
-
-
-Button.propTypes = {
-  className: PropTypes.string,
-  variant: PropTypes.object,
-  size: PropTypes.string,
-  asChild: PropTypes.bool,
-}
-
 
 
 // eslint-disable-next-line react-refresh/only-export-components

@@ -24,6 +24,7 @@ const SignUp = () => {
 
   // sign up using email password
   const handleSignUp = (data) => {
+    console.log(data.role);
     createUser(data.email, data.password)
       .then((result) => {
         const loggedUser = result.user;
@@ -33,11 +34,12 @@ const SignUp = () => {
             const userInfo = {
               name: data.name,
               email: data.email,
+              role: data.role,
             };
             axiosPublic
               .post("/users", userInfo)
               .then((res) => {
-                // console.log(res);
+                console.log(res);
                 if (res.data?.acknowledged && res.data?.insertedId) {
                   reset();
                   toast.success("User created successfully.", {
@@ -143,6 +145,23 @@ const SignUp = () => {
               )}
             </div>
 
+            {/* user role */}
+            <div className="mb-4">
+              <label htmlFor="role" className="block text-sm font-medium mb-2">
+                User Role
+              </label>
+              <select
+              className="border rounded-lg py-2 bg-transparent w-full"
+                {...register("role", { required: true })}
+                defaultValue="user"
+                name="role"
+                id="role"
+              >
+                <option value="user">User</option>
+                <option value="delivermen">DeliveryMan</option>
+              </select>
+            </div>
+
             {/* user password */}
             <div className="mb-4">
               <label
@@ -206,7 +225,7 @@ const SignUp = () => {
               Or sign up with
             </p>
             <Button
-              onClick={() => handleSocialLogin("google", "/")}
+              onClick={() => handleSocialLogin("/")}
               disabled={loading}
               className="flex items-center justify-center mx-auto bg-primary"
             >
