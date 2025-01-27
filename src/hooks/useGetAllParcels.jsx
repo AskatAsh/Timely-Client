@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "./useAxiosSecure";
 
 
-const useGetMyParcels = () => {
+const useGetAllParcels = () => {
   const axiosSecure = useAxiosSecure();
 
 
@@ -17,4 +17,4 @@ const useGetMyParcels = () => {
   return [allParcels, refetch];
 };
 
-export default useGetMyParcels;
+export default useGetAllParcels;
