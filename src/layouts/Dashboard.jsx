@@ -10,17 +10,14 @@ import {
   FaUsers,
 } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
-//   import useIsAdmin from "../Hooks/useIsAdmin";
 import { useState } from "react";
 import { RiMenuFold4Line } from "react-icons/ri";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { BsPersonBoundingBox } from "react-icons/bs";
 import useIsAdmin from './../hooks/useIsAdmin';
-import { ModalContainer } from "reoverlay";
 import useIsDeliveryman from './../hooks/useIsDeliveryman';
 
 const Dashboard = () => {
-  // const [isAdmin] = useIsAdmin();
   const [openSidebar, setOpenSidebar] = useState(false);
   const [isAdmin] = useIsAdmin();
   const [isDeliveryman] = useIsDeliveryman();
@@ -245,7 +242,6 @@ const Dashboard = () => {
       {/* dashboard content */}
       <div className="flex-1 p-4 md:p-8 pt-20">
         <Outlet></Outlet>
-        <ModalContainer />
       </div>
     </div>
   );

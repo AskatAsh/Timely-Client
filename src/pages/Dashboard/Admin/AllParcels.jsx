@@ -22,7 +22,7 @@ const AllParcels = () => {
 
   const closeModal = useCallback(() => {
     setIsOpen(false);
-    setParcelId(""); // Reset the parcelId when closing the modal
+    setParcelId("");
   }, []);
 
   const handleAssign = async (e) => {
