@@ -21,7 +21,7 @@ const MyParcels = () => {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>n.</TableHead>
+              <TableHead>No.</TableHead>
               <TableHead>Requested Delivery Date</TableHead>
               <TableHead>Approx. Delivery Date</TableHead>
               <TableHead>Booking Date</TableHead>
@@ -45,7 +45,7 @@ const MyParcels = () => {
                 </TableCell>
                 <TableCell className="flex flex-col gap-2">
                   <Button size="xs" className="bg-primary text-xs" disabled={parcel?.status !== "pending"}>
-                    <Link to={`/dashboard/updateParcel/${parcel._id}`}>Update</Link>
+                    <Link to={`/dashboard/updateParcel/${parcel._id}`} state={{parcel}}>Update</Link>
                   </Button>
                   <Button size="xs" className="bg-red-600" disabled={parcel?.status !== "pending"}>
                     Cancel

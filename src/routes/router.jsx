@@ -13,6 +13,7 @@ import AllParcels from "./../pages/Dashboard/Admin/AllParcels";
 import AllUsers from './../pages/Dashboard/Admin/AllUsers';
 import AllDeliveryman from './../pages/Dashboard/Admin/AllDeliveryman';
 import MyDeliveryList from "./../pages/Dashboard/Deliveryman/MyDeliveryList";
+import UpdateParcel from './../pages/Dashboard/User/UpdateParcel';
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
         element: <BookParcel />
       },
       {
+        path: 'updateParcel/:id',
+        element: <UpdateParcel />
+      },
+      {
         path: 'myParcels',
         element: <MyParcels />
       },
@@ -77,7 +82,7 @@ const router = createBrowserRouter([
       {
         path: 'myDeliveryList',
         element: <MyDeliveryList />
-      }
+      },
     ]
   },
 ]);
