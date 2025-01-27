@@ -23,7 +23,7 @@ const Navbar = () => {
   const [isAdmin] = useIsAdmin();
   const [isDeliveryman] = useIsDeliveryman();
   // console.log(isAdmin);
-  console.log(isDeliveryman);
+  // console.log(isDeliveryman);
 
   // logout handler
   const handleLogOut = () => {
@@ -176,7 +176,10 @@ const Navbar = () => {
                 onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
                 className="hover:text-primary transition-all duration-200 flex items-center"
               >
-                <FaUserCircle className="text-2xl cursor-pointer text-text" />
+                {
+                  user?.photoURL ? <img className="w-8 h-8 rounded-full border" src={user?.photoURL} alt={`image of ${user?.displayName || "user"}`} /> : <FaUserCircle className="text-2xl cursor-pointer text-text" />
+                }
+                
               </button>
             </>
           ) : (
@@ -223,8 +226,8 @@ const Navbar = () => {
 
       {/* User menu modal */}
       {isUserMenuOpen && (
-        <ul className="absolute top-3/4 right-5 z-40 shadow-md rounded-lg flex flex-col gap-3 max-w-fit p-3 text-sm bg-background">
-          <li className="text-gray-400">
+        <ul className="absolute top-4/3 right-5 z-40 shadow-md rounded-lg flex flex-col gap-3 max-w-fit p-3 text-sm bg-background">
+          <li className="text-gray-600 font-medium">
             {user?.displayName || user?.email || "User"}
           </li>
           <li>

@@ -240,7 +240,7 @@ const Dashboard = () => {
         </ul>
       </aside>
       {/* dashboard content */}
-      <div className="flex-1 p-4 md:p-8 pt-20">
+      <div className="flex-1 p-4 md:p-8 pt-20 tex-text">
         <Outlet></Outlet>
       </div>
     </div>
