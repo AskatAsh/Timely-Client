@@ -12,6 +12,7 @@ import { BsLightningCharge } from "react-icons/bs";
 import { Button } from "../ui/button";
 import { Bounce, toast } from "react-toastify";
 import useIsAdmin from './../../hooks/useIsAdmin';
+import useIsDeliveryman from './../../hooks/useIsDeliveryman';
 
 const Navbar = () => {
   const [isSticky, setIsSticky] = useState(false);
@@ -20,7 +21,7 @@ const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   const { theme, toggleTheme } = useTheme();
   const [isAdmin] = useIsAdmin();
-  const isDeliveryman = false;
+  const isDeliveryman = useIsDeliveryman();
   // console.log(isAdmin);
 
   // logout handler
@@ -220,7 +221,7 @@ const Navbar = () => {
         <ul className="absolute top-3/4 right-5 z-40 shadow-md rounded-lg flex flex-col gap-3 max-w-fit p-3 text-sm bg-background">
           <li className="text-gray-400">{user?.displayName || user?.email || "User"}</li>
           <li>
-            <Link state={{role: `${isAdmin ? 'Admin': isDeliveryman ? 'Deliveryman': 'User'}`}} to={`/dashboard/${isAdmin ? 'adminDashboard': isDeliveryman ? 'myDeliverList': 'userProfile'}`} className="text-text font-semibold hover:text-primary">Dashboard</Link>
+            <Link state={{role: `${isAdmin ? 'Admin': isDeliveryman ? 'Deliveryman': 'User'}`}} to={`/dashboard/${isAdmin ? 'adminDashboard': isDeliveryman ? 'myDeliveryList': 'userProfile'}`} className="text-text font-semibold hover:text-primary">Dashboard</Link>
           </li>
           {/* sign out button */}
           <li className="mt-1">

@@ -17,12 +17,13 @@ import { IoCloseCircleOutline } from "react-icons/io5";
 import { BsPersonBoundingBox } from "react-icons/bs";
 import useIsAdmin from './../hooks/useIsAdmin';
 import { ModalContainer } from "reoverlay";
+import useIsDeliveryman from './../hooks/useIsDeliveryman';
 
 const Dashboard = () => {
   // const [isAdmin] = useIsAdmin();
   const [openSidebar, setOpenSidebar] = useState(false);
   const [isAdmin] = useIsAdmin();
-  const isDeliveryman = false;
+  const [isDeliveryman] = useIsDeliveryman();
 
   return (
     <div className="sm:flex">
