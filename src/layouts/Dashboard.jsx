@@ -16,6 +16,7 @@ import { RiMenuFold4Line } from "react-icons/ri";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { BsPersonBoundingBox } from "react-icons/bs";
 import useIsAdmin from './../hooks/useIsAdmin';
+import { ModalContainer } from "reoverlay";
 
 const Dashboard = () => {
   // const [isAdmin] = useIsAdmin();
@@ -243,6 +244,7 @@ const Dashboard = () => {
       {/* dashboard content */}
       <div className="flex-1 p-4 md:p-8 pt-20">
         <Outlet></Outlet>
+        <ModalContainer />
       </div>
     </div>
   );
