@@ -10,6 +10,7 @@ import UserProfile from './../pages/Dashboard/User/UserProfile';
 import MyParcels from './../pages/Dashboard/User/MyParcels';
 import AdminDashboard from './../pages/Dashboard/Admin/AdminDashboard';
 import AllParcels from "./../pages/Dashboard/Admin/AllParcels";
+import AllUsers from './../pages/Dashboard/Admin/AllUsers';
 
 const router = createBrowserRouter([
   {
@@ -61,7 +62,11 @@ const router = createBrowserRouter([
       {
         path: 'allParcels',
         element: <AllParcels />
-      }
+      },
+      {
+        path: 'allUsers',
+        element: <AllUsers />
+      },
     ]
   },
 ]);
