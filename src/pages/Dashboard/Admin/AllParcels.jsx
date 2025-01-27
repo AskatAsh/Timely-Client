@@ -25,7 +25,7 @@ const AllParcels = () => {
                 <TableHead>Phone/Email</TableHead>
                 <TableHead>Booking Date</TableHead>
                 <TableHead>Delivery Date</TableHead>
-                <TableHead>Cost</TableHead>
+                <TableHead>Cost (tk)</TableHead>
                 <TableHead>Booking Status</TableHead>
                 <TableHead>Action</TableHead>
             </TableRow>
@@ -38,7 +38,7 @@ const AllParcels = () => {
                   <TableCell>{parcel?.userPhone || parcel?.userEmail}</TableCell>
                   <TableCell>{parcel?.bookingDate}</TableCell>
                   <TableCell>{parcel?.deliveryDate}</TableCell>
-                  <TableCell>{parcel?.cost || "N/A"}</TableCell>
+                  <TableCell>{parcel?.price || "N/A"}</TableCell>
                   <TableCell>{parcel?.status}</TableCell>
                   <TableCell className="flex flex-col gap-2">
                     <Button size="xs" className="bg-primary text-xs">Manage</Button>

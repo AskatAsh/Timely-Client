@@ -114,7 +114,7 @@ const Login = () => {
               New here?{" "}
               <Link
                 to="/auth/signup"
-                className="text-golden font-semibold hover:underline"
+                className="text-accent font-semibold hover:underline"
               >
                 Create a New Account
               </Link>

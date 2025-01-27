@@ -21,7 +21,7 @@ const Navbar = () => {
   const { theme, toggleTheme } = useTheme();
   const [isAdmin] = useIsAdmin();
   const isDeliveryman = false;
-  console.log(isAdmin);
+  // console.log(isAdmin);
 
   // logout handler
   const handleLogOut = () => {
