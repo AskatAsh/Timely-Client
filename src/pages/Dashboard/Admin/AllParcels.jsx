@@ -14,7 +14,7 @@ import useAxiosSecure from "./../../../hooks/useAxiosSecure";
 import { enqueueSnackbar, SnackbarProvider } from "notistack";
 
 const AllParcels = () => {
-  const [allParcels] = useGetAllParcels();
+  const [allParcels, refetch] = useGetAllParcels();
   const [isOpen, setIsOpen] = useState(false);
   const [parcelId, setParcelId] = useState("");
   const [allDeliveryman] = useGetAllDeliveryman();
@@ -32,11 +32,12 @@ const AllParcels = () => {
       const res = await axiosSecure.patch(`/assignDeliveryman/${parcelId}`, {
         deliverymanId,
       });
-      console.log(res);
+      // console.log(res);
       if (res.data.acknowledged) {
         enqueueSnackbar("Assigned Deliveryman Successfully!", {
           variant: "success",
         });
+        refetch();
       }
     } catch (err) {
       console.error("Error assigning deliveryman:", err);
