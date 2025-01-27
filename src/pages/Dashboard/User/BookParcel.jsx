@@ -20,14 +20,26 @@ const BookParcel = () => {
 
   const today = format(new Date(), "yyyy-MM-dd");
 
-  const onSubmit = async (data) => {
+  const getPrice = (parcelWeight) => {
+    let price;
+    if (parcelWeight <= 1) {
+      price = 50;
+    } else if (parcelWeight > 1 && parcelWeight <= 2) {
+      price = 100;
+    } else {
+      price = 150;
+    }
+    return price;
+  };
 
+  const onSubmit = async (data) => {
     const deliveryData = {
       ...data,
       userName: user?.displayName,
       userEmail: user?.email,
       status: "pending",
       bookingDate: today,
+      price: getPrice(data.parcelWeight),
     };
     console.log("Form Data:", deliveryData);
     // Add API call or form submission logic here

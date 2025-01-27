@@ -20,7 +20,7 @@ const AllParcels = () => {
         <Table>
           <TableHeader>
             <TableRow>
-                <TableHead>n.</TableHead>
+                <TableHead>No.</TableHead>
                 <TableHead>Username</TableHead>
                 <TableHead>Phone/Email</TableHead>
                 <TableHead>Booking Date</TableHead>

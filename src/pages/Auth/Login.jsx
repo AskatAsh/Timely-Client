@@ -7,9 +7,11 @@ import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { FaGoogle } from "react-icons/fa";
+import useAxiosPublic from "./../../hooks/useAxiosPublic";
 
 const Login = () => {
   const { handleSocialLogin, loading } = useSocialLogin();
+  const axiosPublic = useAxiosPublic();
   const { signIn } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
@@ -26,16 +28,29 @@ const Login = () => {
     signIn(email, password).then((result) => {
       // console.log(result.user);
       if (result.user) {
-        toast.success("User Login Successful.", {
-          position: "top-right",
-          autoClose: 1500,
-          hideProgressBar: false,
-          closeOnClick: true,
-          theme: "light",
-          transition: Bounce,
-        });
-        form.reset();
-        navigate(from, { replace: true });
+        const userInfo = {
+          name: result.user.name,
+          email: result.user.email,
+        };
+        axiosPublic
+          .post("/users", userInfo)
+          .then((res) => {
+            if (res.data.loggedin) {
+              toast.success("User Login Successful.", {
+                position: "top-right",
+                autoClose: 1500,
+                hideProgressBar: false,
+                closeOnClick: true,
+                theme: "light",
+                transition: Bounce,
+              });
+              form.reset();
+              navigate(from, { replace: true });
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       }
     });
   };
@@ -112,7 +127,7 @@ const Login = () => {
             </p>
             <div className="flex justify-center gap-6">
               <Button
-                onClick={() => handleSocialLogin("google", from)}
+                onClick={() => handleSocialLogin(from)}
                 disabled={loading}
                 className="flex items-center justify-center mx-auto bg-accent"
               >
