@@ -5,7 +5,7 @@ import { ToastContainer } from "react-toastify";
 
 const AuthLayout = () => {
     return (
-        <main>
+        <main className="font-display">
             <Outlet />
             <ToastContainer />
         </main>

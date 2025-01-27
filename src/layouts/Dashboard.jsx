@@ -23,7 +23,7 @@ const Dashboard = () => {
   const [isDeliveryman] = useIsDeliveryman();
 
   return (
-    <div className="sm:flex">
+    <div className="sm:flex font-display">
       {/* sidbar open icon for small device */}
       <button
         className="md:hidden fixed top-4 right-4 text-text"
