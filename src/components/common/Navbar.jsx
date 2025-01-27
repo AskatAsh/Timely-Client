@@ -11,6 +11,7 @@ import { MdOutlineDarkMode } from "react-icons/md";
 import { BsLightningCharge } from "react-icons/bs";
 import { Button } from "../ui/button";
 import { Bounce, toast } from "react-toastify";
+import useIsAdmin from './../../hooks/useIsAdmin';
 
 const Navbar = () => {
   const [isSticky, setIsSticky] = useState(false);
@@ -18,8 +19,9 @@ const Navbar = () => {
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const { user, logOut } = useContext(AuthContext);
   const { theme, toggleTheme } = useTheme();
-  const isAdmin = false;
+  const [isAdmin] = useIsAdmin();
   const isDeliveryman = false;
+  console.log(isAdmin);
 
   // logout handler
   const handleLogOut = () => {

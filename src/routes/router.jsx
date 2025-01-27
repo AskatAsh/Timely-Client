@@ -8,6 +8,7 @@ import SignUp from "./../pages/Auth/SignUp";
 import BookParcel from './../pages/Dashboard/User/BookParcel';
 import UserProfile from './../pages/Dashboard/User/UserProfile';
 import MyParcels from './../pages/Dashboard/User/MyParcels';
+import AdminDashboard from './../pages/Dashboard/Admin/AdminDashboard';
 
 const router = createBrowserRouter([
   {
@@ -50,6 +51,11 @@ const router = createBrowserRouter([
       {
         path: 'myParcels',
         element: <MyParcels />
+      },
+      // admin routes
+      {
+        path: 'adminDashboard',
+        element: <AdminDashboard />
       }
     ]
   },

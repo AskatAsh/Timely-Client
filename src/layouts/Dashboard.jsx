@@ -1,14 +1,14 @@
 import {
   FaBook,
+  FaBoxOpen,
   FaCalendar,
   FaClock,
   FaEnvelope,
   FaHome,
   FaList,
   FaParachuteBox,
-  FaShoppingCart,
   FaThumbsUp,
-  FaUtensils,
+  FaUsers,
 } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
 //   import useIsAdmin from "../Hooks/useIsAdmin";
@@ -16,11 +16,12 @@ import { useState } from "react";
 import { RiMenuFold4Line } from "react-icons/ri";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { BsPersonBoundingBox } from "react-icons/bs";
+import useIsAdmin from './../hooks/useIsAdmin';
 
 const Dashboard = () => {
   // const [isAdmin] = useIsAdmin();
   const [openSidebar, setOpenSidebar] = useState(false);
-  const isAdmin = false;
+  const [isAdmin] = useIsAdmin();
   const isDeliveryman = false;
 
   return (
@@ -81,7 +82,7 @@ const Dashboard = () => {
                   }}
                   to="/dashboard/allParcels"
                 >
-                  <FaUtensils></FaUtensils>
+                  <FaBoxOpen></FaBoxOpen>
                   All Parcels
                 </NavLink>
               </li>
@@ -95,7 +96,7 @@ const Dashboard = () => {
                   }}
                   to="/dashboard/allUsers"
                 >
-                  <FaShoppingCart></FaShoppingCart>
+                  <FaUsers></FaUsers>
                   All Users
                 </NavLink>
               </li>
@@ -109,7 +110,7 @@ const Dashboard = () => {
                   }}
                   to="/dashboard/allDeliveryman"
                 >
-                  <FaClock></FaClock>
+                  <BsPersonBoundingBox></BsPersonBoundingBox>
                   All Deliveryman
                 </NavLink>
               </li>
