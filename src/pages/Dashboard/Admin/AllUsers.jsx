@@ -14,11 +14,9 @@ import {
 const AllUsers = () => {
   const axiosSecure = useAxiosSecure();
   const [allUsers, refetch] = useGetAllUsers();
-  console.log(allUsers);
 
   const handleChangeRole = async (role, id) => {
     const res = await axiosSecure.patch(`/changeRole/${id}`, { role });
-    console.log(res);
     if (res.data?.acknowledged) {
       enqueueSnackbar(`User role changed to ${role} Successfully!`, {
         variant: "success",

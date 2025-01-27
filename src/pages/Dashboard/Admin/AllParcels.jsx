@@ -32,7 +32,6 @@ const AllParcels = () => {
       const res = await axiosSecure.patch(`/assignDeliveryman/${parcelId}`, {
         deliverymanId,
       });
-      // console.log(res);
       if (res.data.acknowledged) {
         enqueueSnackbar("Assigned Deliveryman Successfully!", {
           variant: "success",

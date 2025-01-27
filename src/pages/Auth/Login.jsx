@@ -23,10 +23,8 @@ const Login = () => {
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    // console.log(email, password);
 
     signIn(email, password).then((result) => {
-      // console.log(result.user);
       if (result.user) {
         const userInfo = {
           name: result.user.name,
@@ -49,7 +47,14 @@ const Login = () => {
             }
           })
           .catch((error) => {
-            console.log(error);
+            toast.error(error.message, {
+              position: "top-right",
+              autoClose: 1500,
+              hideProgressBar: false,
+              closeOnClick: true,
+              theme: "light",
+              transition: Bounce,
+            });
           });
       }
     });

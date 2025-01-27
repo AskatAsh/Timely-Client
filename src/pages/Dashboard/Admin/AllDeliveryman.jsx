@@ -10,7 +10,6 @@ import {
 
 const AllDeliveryman = () => {
   const [allDeliveryman] = useGetAllDeliveryman();
-  console.log(allDeliveryman);
 
   return (
     <div className="p-4">

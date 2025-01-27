@@ -41,10 +41,8 @@ const BookParcel = () => {
       bookingDate: today,
       price: getPrice(data.parcelWeight),
     };
-    console.log("Form Data:", deliveryData);
     // Add API call or form submission logic here
     const response = await axiosSecure.post("/bookADelivery", deliveryData);
-    // console.log(response.data);
 
     // show success popup
     if (response.data.insertedId) {

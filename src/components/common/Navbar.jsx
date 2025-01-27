@@ -22,8 +22,6 @@ const Navbar = () => {
   const { theme, toggleTheme } = useTheme();
   const [isAdmin] = useIsAdmin();
   const [isDeliveryman] = useIsDeliveryman();
-  // console.log(isAdmin);
-  // console.log(isDeliveryman);
 
   // logout handler
   const handleLogOut = () => {
@@ -39,7 +37,16 @@ const Navbar = () => {
           transition: Bounce,
         });
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        toast.error(error.message, {
+          position: "top-center",
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          theme: "light",
+          transition: Bounce,
+        });
+      });
   };
 
   // scroll effect

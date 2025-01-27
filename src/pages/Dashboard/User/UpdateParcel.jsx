@@ -15,7 +15,6 @@ const UpdateParcel = () => {
   const { user } = useAuth();
   const {state} = useLocation();
   const [parcel] = useState(state.parcel);
-//   console.log(parcel);
   const {
     register,
     handleSubmit,
@@ -46,10 +45,8 @@ const UpdateParcel = () => {
       bookingDate: today,
       price: getPrice(data.parcelWeight),
     };
-    console.log("Form Data:", updatedData);
     // Update API call here
     const response = await axiosSecure.put(`/updateParcel/${parcel._id}`, updatedData);
-    // console.log(response.data);
 
     // show success popup
     if (response.data.acknowledged) {

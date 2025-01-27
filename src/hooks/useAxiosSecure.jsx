@@ -28,7 +28,6 @@ const useAxiosSecure = () => {
             await logOut();
             navigate('/auth/login');
         }
-        // console.log("Response Status error: ", status);
 
         return Promise.reject(error);
     })

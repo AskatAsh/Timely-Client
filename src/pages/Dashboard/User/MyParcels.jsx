@@ -45,9 +45,7 @@ const MyParcels = () => {
       rating,
       review,
     };
-    // console.log(reviewInfo);
     const res = await axiosSecure.post("/addReview", reviewInfo);
-    console.log(res);
     if (res.data.insertedId) {
       enqueueSnackbar("Booked Delivery Successfully!", { variant: "success" });
       setIsOpen(false);

@@ -32,7 +32,6 @@ const MyDeliveryList = () => {
   }, []);
 
   const handleConfirm = async () => {
-    // console.log(action);
     // deliver or cancel delivery
 
     const res = await axiosSecure.put(`/deliveryAction/${action.id}`, {
@@ -88,7 +87,6 @@ const MyDeliveryList = () => {
                 <TableCell>{delivery?.deliveryAddress || "N/A"}</TableCell>
                 <TableCell>
                   <Button
-                    onClick={() => console.log("See Location", delivery._id)}
                     size="xs"
                     className="bg-accent-400 text-text"
                   >

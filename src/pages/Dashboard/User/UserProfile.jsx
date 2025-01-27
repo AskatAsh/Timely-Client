@@ -4,8 +4,6 @@ import { useLocation } from 'react-router-dom';
 const UserProfile = () => {
   const { user } = useAuth();
   const {state} = useLocation();
-  // console.log(user);
-
 
   return (
     <section className="bg-background overflow-hidden shadow rounded-lg border">

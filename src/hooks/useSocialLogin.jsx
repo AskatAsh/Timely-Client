@@ -20,7 +20,6 @@ const useSocialLogin = () => {
     try {
       let userInfo;
 
-      // console.log("Starting Google sign-in...");
       const result = await googleSignIn();
 
       if (result.user?.email) {
@@ -29,11 +28,9 @@ const useSocialLogin = () => {
           name: result.user?.displayName,
           role: "user",
         };
-        // console.log("Google sign-in successful:", userInfo);
 
         // Save user info to database
         const response = await axiosPublic.post("/users", userInfo);
-        // console.log("User info saved:", response.data);
         if (response.data?.acknowledged) {
           toast.success("User created successfully.", {
             position: "top-right",
