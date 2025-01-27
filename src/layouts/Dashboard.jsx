@@ -2,7 +2,6 @@ import {
   FaBook,
   FaBoxOpen,
   FaCalendar,
-  FaClock,
   FaEnvelope,
   FaHome,
   FaList,
