@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 const UserProfile = () => {
   const { user } = useAuth();
   const {state} = useLocation();
-  console.log(user);
+  // console.log(user);
 
 
   return (
