@@ -131,7 +131,7 @@ const MyDeliveryList = () => {
           <div className="max-w-lg w-full p-5 rounded-xl shadow-lg m-4 bg-background border border-secondary-800">
             <div className="flex flex-col items-center justify-center gap-4 mt-3 text-center">
               <p className="py-2">
-                <CiWarning size={48} />
+                <CiWarning size={48} className={`${action.type === "canceled" ? "text-red-400" : "text-primary-700"}`} />
               </p>
               <h3 className="text-text text-2xl font-bold">Are you sure !?</h3>
               <p className="mb-3">
@@ -140,7 +140,7 @@ const MyDeliveryList = () => {
               <Button
                 onClick={handleConfirm}
                 type="submit"
-                className="bg-primary-600 text-text"
+                className={`${action.type === "canceled" ? "bg-red-400" : "bg-primary-500"} text-text`}
               >
                 Yes, Confirm {action.type}!
               </Button>
