@@ -8,13 +8,14 @@ import {
   TableBody,
   TableHeader,
 } from "@/components/ui/table";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import useGetAllDeliveryman from "./../../../hooks/useGetAllDeliveryman";
 import useAxiosSecure from "./../../../hooks/useAxiosSecure";
 import { enqueueSnackbar, SnackbarProvider } from "notistack";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { format } from "date-fns";
+import { useForm } from "react-hook-form";
 
 const AllParcels = () => {
   const [allParcels, refetch] = useGetAllParcels();
@@ -22,6 +23,39 @@ const AllParcels = () => {
   const [parcelId, setParcelId] = useState("");
   const [allDeliveryman] = useGetAllDeliveryman();
   const axiosSecure = useAxiosSecure();
+
+  const [parcelsData, setParcelsData] = useState(allParcels);
+  const { register, handleSubmit, reset } = useForm();
+
+  useEffect(() => {
+    if (allParcels) {
+      setParcelsData(allParcels);
+    }
+  }, [allParcels]);
+
+  const filterByDate = async (data) => {
+    // console.log(data.fromDate, data.toDate);
+    try {
+      const res = await axiosSecure.get(
+        `/filteredParcels?fromDate=${data.fromDate}&toDate=${data.toDate}`
+      );
+      if (res.status === 200) {
+        setParcelsData(res.data);
+        reset();
+      }
+    } catch (error) {
+      enqueueSnackbar(error.message, {
+        variant: "error",
+        autoHideDuration: 3000,
+      });
+    }
+  };
+
+  const resetForm = async () => {
+    reset();
+    await refetch();
+    setParcelsData(allParcels);
+  };
 
   const closeModal = useCallback(() => {
     setIsOpen(false);
@@ -31,11 +65,17 @@ const AllParcels = () => {
   const handleAssign = async (e) => {
     e.preventDefault();
     const deliverymanId = e.target.deliveryman.value;
-    const approxDeliveryDate = format(e.target.approxDeliveryDate.value, 'yyyy/MM/dd');
-    const assignedInfo = {deliverymanId, approxDeliveryDate};
+    const approxDeliveryDate = format(
+      e.target.approxDeliveryDate.value,
+      "yyyy/MM/dd"
+    );
+    const assignedInfo = { deliverymanId, approxDeliveryDate };
     // console.log(assignedInfo);
     try {
-      const res = await axiosSecure.patch(`/assignDeliveryman/${parcelId}`, assignedInfo);
+      const res = await axiosSecure.patch(
+        `/assignDeliveryman/${parcelId}`,
+        assignedInfo
+      );
       if (res.data.acknowledged) {
         enqueueSnackbar("Assigned Deliveryman Successfully!", {
           variant: "success",
@@ -49,7 +89,7 @@ const AllParcels = () => {
     }
   };
 
-  return (
+  return parcelsData.length ? (
     <div className="p-4">
       <SnackbarProvider
         autoHideDuration={2000}
@@ -59,7 +99,39 @@ const AllParcels = () => {
         }}
       />
       <h1 className="text-2xl font-bold mb-4">All Parcels</h1>
-      <p className="mb-4">Total parcels: {allParcels.length}</p>
+      <p className="mb-4">Total parcels: {parcelsData.length}</p>
+      <div className="flex items-center gap-4 bg-primary-100 px-4 py-2 rounded-lg my-4">
+        <form
+          onSubmit={handleSubmit(filterByDate)}
+          className="flex items-center gap-4 "
+        >
+          <h3 className="text-xl font-bold">Filter by Date:</h3>
+          <div className="flex items-center gap-2">
+            <Label htmlFor="fromDate">From:</Label>
+            <Input
+              id="fromDate"
+              type="date"
+              name="fromDate"
+              {...register("fromDate")}
+            />
+          </div>
+          <div className="flex items-center gap-2">
+            <Label htmlFor="toDate">To:</Label>
+            <Input
+              id="toDate"
+              type="date"
+              name="toDate"
+              {...register("toDate")}
+            />
+          </div>
+          <Button type="submit" className="bg-primary-600 text-text">
+            Apply Filter
+          </Button>
+        </form>
+        <Button onClick={resetForm} variant="outline">
+          Reset
+        </Button>
+      </div>
       <div className="overflow-x-auto">
         <Table>
           <TableHeader>
@@ -75,7 +147,7 @@ const AllParcels = () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {allParcels.map((parcel, idx) => (
+            {parcelsData.map((parcel, idx) => (
               <TableRow key={parcel._id}>
                 <TableCell>{idx + 1}</TableCell>
                 <TableCell>{parcel?.userName}</TableCell>
@@ -150,6 +222,8 @@ const AllParcels = () => {
         </div>
       )}
     </div>
+  ) : (
+    <div>No Parcels to show</div>
   );
 };
 
