@@ -124,7 +124,7 @@ const Dashboard = () => {
                     const activeClasses = isActive ? "bg-primary-400" : "";
                     return `${baseClasses} ${activeClasses}`;
                   }}
-                  to="/dashboard/myDeliverList"
+                  to="/dashboard/myDeliveryList"
                 >
                   <FaList></FaList>
                   My Delivery List
