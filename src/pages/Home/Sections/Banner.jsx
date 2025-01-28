@@ -5,7 +5,7 @@ import '../../../styles/hero-banner.css';
 const Banner = () => {
   return (
     <section
-      className="banner-container bg-background bg-cover bg-center min-h-screen"
+      className="banner-container bg-background bg-cover bg-center h-[620px] md:h-screen"
     >
       <div className="py-8 px-4 max-w-3xl text-left lg:py-16 lg:px-12">
         <a

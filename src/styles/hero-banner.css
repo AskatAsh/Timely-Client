@@ -1,9 +1,11 @@
 
 .banner-container{
+    max-width: 1440px;
+    margin-inline: auto;
     background-image: url('../../src/assets/images/parcel-delivery-1.svg'), url('../../src/assets/images/parcel-delivery-2.svg');
     background-position: right bottom -90px, bottom -20px center;
     background-repeat: no-repeat, no-repeat;
-    background-size: auto 80%, auto 40%;
+    background-size: auto 90%, auto 40%;
 }
 
 @media screen and (max-width: 1280px) {
@@ -21,5 +23,15 @@
         background-position: right bottom -50px, bottom -20px left;
         background-repeat: no-repeat, no-repeat;
         background-size: auto 40%, auto 20%;
+    }
+}
+
+@media screen and (min-width: 1281px) and (max-width: 1440px) {
+    .banner-container{
+        height: 700px;
+        background-image: url('../../src/assets/images/parcel-delivery-1.svg'), url('../../src/assets/images/parcel-delivery-2.svg');
+        background-position: right bottom -100px, bottom -10px left;
+        background-repeat: no-repeat, no-repeat;
+        background-size: auto 70%, auto 30%;
     }
 }
