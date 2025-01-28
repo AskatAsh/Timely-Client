@@ -9,7 +9,7 @@ import {
   TableHeader,
 } from "@/components/ui/table";
 import { Link } from "react-router-dom";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import useAuth from "./../../../hooks/useAuth";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -20,10 +20,38 @@ import { enqueueSnackbar, SnackbarProvider } from "notistack";
 
 const MyParcels = () => {
   const { user } = useAuth();
-  const [myParcels] = useGetMyParcels();
+  const [myParcels, refetch] = useGetMyParcels();
   const [isOpen, setIsOpen] = useState(false);
   const [parcel, setParcel] = useState("");
+  const [myBookedParcels, setMyBookedParcels] = useState([]);
   const axiosSecure = useAxiosSecure();
+
+  const resetStatus = async () => {
+    await refetch();
+    setMyBookedParcels(myParcels);
+  };
+
+  const filterByStatus = async (e) => {
+    try {
+      const res = await axiosSecure.get(
+        `/parcelsByStatus?status=${e.target.value}&email=${user?.email}`
+      );
+      if (res.status === 200) {
+        setMyBookedParcels(res.data);
+      }
+    } catch (error) {
+      enqueueSnackbar(error.message, {
+        variant: "error",
+        autoHideDuration: 3000,
+      });
+    }
+  }
+
+  useEffect(() => {
+    if (myParcels) {
+      setMyBookedParcels(myParcels);
+    }
+  }, [myParcels]);
 
   const closeModal = useCallback(() => {
     setIsOpen(false);
@@ -63,7 +91,26 @@ const MyParcels = () => {
         }}
       />
       <h1 className="text-2xl font-bold mb-4">My Parcels</h1>
-      <p className="mb-4">My total parcels: {myParcels.length}</p>
+      <p className="mb-4">My total parcels: {myBookedParcels.length}</p>
+      <div className="flex items-center gap-4 bg-primary-100 px-4 py-2 rounded-lg my-4">
+        <div
+          className="flex items-center gap-4 justify-between w-full"
+        >
+          <h3 className="text-xl font-bold">Filter by Status:</h3>
+          <div className="flex items-center gap-2">
+            <select defaultValue="" onChange={filterByStatus} className="py-2 rounded-md font-medium">
+              <option value="">All parcels</option>
+              <option value="pending">Pending</option>
+              <option value="delivered">Delivered</option>
+              <option value="on the way">On the way</option>
+              <option value="canceled">Canceled</option>
+            </select>
+          </div>
+        </div>
+        <Button onClick={resetStatus} className="bg-primary-400 text-text">
+          Reset
+        </Button>
+      </div>
       <div className="overflow-x-auto">
         <Table>
           <TableHeader>
@@ -78,7 +125,7 @@ const MyParcels = () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {myParcels.map((parcel, idx) => (
+            {myBookedParcels.map((parcel, idx) => (
               <TableRow key={parcel._id}>
                 <TableCell>{idx + 1}</TableCell>
                 <TableCell>{parcel?.deliveryDate}</TableCell>
@@ -86,6 +133,7 @@ const MyParcels = () => {
                 <TableCell>{parcel?.bookingDate}</TableCell>
                 <TableCell>{parcel?.deliverymanId || "N/A"}</TableCell>
                 <TableCell>
+                  {parcel?.status}<br />
                   {parcel?.status === "delivered" ? (
                     <Button
                       onClick={() => {
@@ -97,9 +145,7 @@ const MyParcels = () => {
                     >
                       Add Review
                     </Button>
-                  ) : (
-                    `${parcel?.status}`
-                  )}
+                  ) : ""}
                 </TableCell>
                 <TableCell className="flex flex-col gap-2">
                   <Button
