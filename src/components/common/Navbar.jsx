@@ -173,7 +173,7 @@ const Navbar = () => {
                 className="hover:text-primary transition-all duration-200 flex items-center"
               >
                 {
-                  user?.photoURL ? <img className="w-8 h-8 rounded-full border" src={user?.photoURL} alt={`image of ${user?.displayName || "user"}`} /> : <FaUserCircle className="text-2xl cursor-pointer text-text" />
+                  user?.photoURL ? <img className="w-8 h-8 object-cover rounded-full border" src={user?.photoURL} alt={`image of ${user?.displayName || "user"}`} /> : <FaUserCircle className="text-2xl cursor-pointer text-text" />
                 }
                 
               </button>
