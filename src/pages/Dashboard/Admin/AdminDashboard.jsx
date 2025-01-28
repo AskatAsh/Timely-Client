@@ -1,7 +1,59 @@
 import useGetStats from "./../../../hooks/useGetStats";
+import useGetAllParcels from "./../../../hooks/useGetAllParcels";
+import Chart from "react-apexcharts";
+import { useEffect, useState } from "react";
 
 const AdminDashboard = () => {
   const [stats] = useGetStats();
+  const [allParcels] = useGetAllParcels();
+  const [chartData, setChartData] = useState({
+    series: [],
+    options: {},
+  });
+  useEffect(() => {
+    // Process data to group bookings by date
+    const bookingCounts = allParcels.reduce((acc, booking) => {
+      const date = booking.bookingDate;
+      acc[date] = (acc[date] || 0) + 1;
+      return acc;
+    }, {});
+
+    // Extract dates and counts
+    const dates = Object.keys(bookingCounts);
+    const counts = Object.values(bookingCounts);
+
+    // Set chart data
+    setChartData({
+      series: [
+        {
+          name: "Bookings",
+          data: counts,
+        },
+      ],
+      options: {
+        chart: {
+          type: "bar",
+          height: 350,
+        },
+        xaxis: {
+          categories: dates, // Dates as labels
+          title: {
+            text: "Booking Date",
+          },
+        },
+        yaxis: {
+          title: {
+            text: "Number of Bookings",
+          },
+        },
+        colors: ["#6d12ce"],
+        title: {
+          text: "Bookings by Date",
+          align: "center",
+        },
+      },
+    });
+  }, [allParcels]);
 
   return (
     <div>
@@ -33,6 +85,16 @@ const AdminDashboard = () => {
           </div>
         </div>
       </section>
+
+      {/* bar chart showing bookings by date */}
+      <div className="chart my-10">
+        <Chart
+          options={chartData.options}
+          series={chartData.series}
+          type="bar"
+          height={350}
+        />
+      </div>
     </div>
   );
 };
