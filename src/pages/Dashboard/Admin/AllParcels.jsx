@@ -12,6 +12,9 @@ import { useState, useCallback } from "react";
 import useGetAllDeliveryman from "./../../../hooks/useGetAllDeliveryman";
 import useAxiosSecure from "./../../../hooks/useAxiosSecure";
 import { enqueueSnackbar, SnackbarProvider } from "notistack";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { format } from "date-fns";
 
 const AllParcels = () => {
   const [allParcels, refetch] = useGetAllParcels();
@@ -28,10 +31,11 @@ const AllParcels = () => {
   const handleAssign = async (e) => {
     e.preventDefault();
     const deliverymanId = e.target.deliveryman.value;
+    const approxDeliveryDate = format(e.target.approxDeliveryDate.value, 'yyyy/MM/dd');
+    const assignedInfo = {deliverymanId, approxDeliveryDate};
+    console.log(assignedInfo);
     try {
-      const res = await axiosSecure.patch(`/assignDeliveryman/${parcelId}`, {
-        deliverymanId,
-      });
+      const res = await axiosSecure.patch(`/assignDeliveryman/${parcelId}`, assignedInfo);
       if (res.data.acknowledged) {
         enqueueSnackbar("Assigned Deliveryman Successfully!", {
           variant: "success",
@@ -105,21 +109,32 @@ const AllParcels = () => {
             onSubmit={handleAssign}
             className="max-w-lg w-full p-5 rounded-xl shadow-lg m-4 bg-background border border-secondary-800"
           >
-            <label htmlFor="assign">Assign a Deliveryman</label>
-            <select
-              name="deliveryman"
-              id="assign"
-              className="w-full border-2 rounded-md py-2 mt-2"
-            >
-              <option value="" disabled>
-                Select a deliveryman
-              </option>
-              {allDeliveryman.map((deliveryman) => (
-                <option key={deliveryman._id} value={deliveryman._id}>
-                  {deliveryman.name}
+            <div>
+              <Label htmlFor="assign">Assign a Deliveryman</Label>
+              <select
+                name="deliveryman"
+                id="assign"
+                className="w-full border-2 rounded-md py-2 mt-2"
+              >
+                <option value="" disabled>
+                  Select a deliveryman
                 </option>
-              ))}
-            </select>
+                {allDeliveryman.map((deliveryman) => (
+                  <option key={deliveryman._id} value={deliveryman._id}>
+                    {deliveryman.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="mt-3">
+              <Label htmlFor="deliveryDate">Approximate Delivery Date</Label>
+              <Input
+                id="deliveryDate"
+                type="date"
+                name="approxDeliveryDate"
+                className="mt-2"
+              />
+            </div>
             <div className="flex items-center justify-center gap-4 mt-3">
               <Button type="submit" className="bg-primary-600 text-text">
                 Assign
