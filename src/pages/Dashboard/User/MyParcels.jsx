@@ -25,6 +25,7 @@ const MyParcels = () => {
   const [parcel, setParcel] = useState("");
   const [myBookedParcels, setMyBookedParcels] = useState([]);
   const axiosSecure = useAxiosSecure();
+  console.log(myParcels);
 
   const resetStatus = async () => {
     await refetch();
@@ -45,7 +46,7 @@ const MyParcels = () => {
         autoHideDuration: 3000,
       });
     }
-  }
+  };
 
   useEffect(() => {
     if (myParcels) {
@@ -93,12 +94,14 @@ const MyParcels = () => {
       <h1 className="text-2xl font-bold mb-4">My Parcels</h1>
       <p className="mb-4">My total parcels: {myBookedParcels.length}</p>
       <div className="flex items-center gap-4 bg-primary-100 px-4 py-2 rounded-lg my-4">
-        <div
-          className="flex items-center gap-4 justify-between w-full"
-        >
+        <div className="flex items-center gap-4 justify-between w-full">
           <h3 className="text-xl font-bold">Filter by Status:</h3>
           <div className="flex items-center gap-2">
-            <select defaultValue="" onChange={filterByStatus} className="py-2 rounded-md font-medium">
+            <select
+              defaultValue=""
+              onChange={filterByStatus}
+              className="py-2 rounded-md font-medium"
+            >
               <option value="">All parcels</option>
               <option value="pending">Pending</option>
               <option value="delivered">Delivered</option>
@@ -133,7 +136,9 @@ const MyParcels = () => {
                 <TableCell>{parcel?.bookingDate}</TableCell>
                 <TableCell>{parcel?.deliverymanId || "N/A"}</TableCell>
                 <TableCell>
-                  {parcel?.status}<br />
+                  {parcel?.status}
+                  <br />
+                  {/* add review button */}
                   {parcel?.status === "delivered" ? (
                     <Button
                       onClick={() => {
@@ -145,7 +150,25 @@ const MyParcels = () => {
                     >
                       Add Review
                     </Button>
-                  ) : ""}
+                  ) : (
+                    ""
+                  )}
+                  {/* pay button */}
+                  {parcel?.status === "pending" ? (
+                    <Link
+                      className="bg-accent rounded-sm text-xs font-medium text-white px-2 py-1"
+                      to="/dashboard/payment"
+                      state={{
+                        amount: parcel?.price,
+                        parcelId: parcel._id,
+                        phone: parcel.phone,
+                      }}
+                    >
+                      Pay Now
+                    </Link>
+                  ) : (
+                    ""
+                  )}
                 </TableCell>
                 <TableCell className="flex flex-col gap-2">
                   <Button

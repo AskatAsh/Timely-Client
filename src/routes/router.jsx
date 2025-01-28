@@ -16,6 +16,7 @@ import MyDeliveryList from "./../pages/Dashboard/Deliveryman/MyDeliveryList";
 import UpdateParcel from "./../pages/Dashboard/User/UpdateParcel";
 import MyReviews from "./../pages/Dashboard/Deliveryman/MyReviews";
 import PrivateRoute from "./PrivateRoute";
+import Payment from './../pages/Dashboard/User/Payment/Payment';
 
 const router = createBrowserRouter([
   {
@@ -66,6 +67,10 @@ const router = createBrowserRouter([
       {
         path: "myParcels",
         element: <MyParcels />,
+      },
+      {
+        path: "payment",
+        element: <Payment />,
       },
       // admin routes
       {
