@@ -1,6 +1,6 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { enqueueSnackbar, SnackbarProvider } from "notistack";
 import useAuth from "./../../../../hooks/useAuth";
 import useAxiosSecure from "./../../../../hooks/useAxiosSecure";
@@ -9,13 +9,14 @@ import { Button } from "@/components/ui/button";
 const CheckoutForm = () => {
   const { user } = useAuth();
   const [errorMessage, setErrorMessage] = useState("");
+  const [transactionId, setTransactionId] = useState("");
   const [clientSecret, setClientSecret] = useState(null);
   const axiosSecure = useAxiosSecure();
   const { state } = useLocation();
 
   const stripe = useStripe();
   const elements = useElements();
-  //   const navigate = useNavigate();
+    const navigate = useNavigate();
 
   const price = state.amount;
 
@@ -73,7 +74,8 @@ const CheckoutForm = () => {
     } else {
       // console.log("payment intent: ", paymentIntent);
       if (paymentIntent.status === "succeeded") {
-        console.log(paymentIntent.id);
+        // console.log(paymentIntent.id);
+        setTransactionId(paymentIntent.id);
       }
     }
 
@@ -92,7 +94,7 @@ const CheckoutForm = () => {
         variant: "success",
         autoHideDuration: 2000,
       });
-      // navigate("/dashboard/paymentSuccess");
+      navigate("/dashboard/paymentSuccess");
     }
   };
 
@@ -131,9 +133,9 @@ const CheckoutForm = () => {
           Pay
         </Button>
         <p className="text-red-600">{errorMessage}</p>
-        {/* {transactionId && (
-        <p className="text-green-600"> Your transaction id: {transactionId}</p>
-      )} */}
+        {transactionId && (
+        <p className="text-text text-lg text-center font-semibold"> Your transaction id: {transactionId}</p>
+      )}
       </form>
     </section>
   );

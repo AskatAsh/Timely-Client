@@ -17,6 +17,7 @@ import UpdateParcel from "./../pages/Dashboard/User/UpdateParcel";
 import MyReviews from "./../pages/Dashboard/Deliveryman/MyReviews";
 import PrivateRoute from "./PrivateRoute";
 import Payment from './../pages/Dashboard/User/Payment/Payment';
+import PaymentSuccess from './../pages/Dashboard/User/Payment/PaymentSuccess';
 
 const router = createBrowserRouter([
   {
@@ -71,6 +72,10 @@ const router = createBrowserRouter([
       {
         path: "payment",
         element: <Payment />,
+      },
+      {
+        path: "paymentSuccess",
+        element: <PaymentSuccess />,
       },
       // admin routes
       {

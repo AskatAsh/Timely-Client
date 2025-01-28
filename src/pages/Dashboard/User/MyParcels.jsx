@@ -25,7 +25,6 @@ const MyParcels = () => {
   const [parcel, setParcel] = useState("");
   const [myBookedParcels, setMyBookedParcels] = useState([]);
   const axiosSecure = useAxiosSecure();
-  console.log(myParcels);
 
   const resetStatus = async () => {
     await refetch();
