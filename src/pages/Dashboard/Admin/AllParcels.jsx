@@ -33,7 +33,7 @@ const AllParcels = () => {
     const deliverymanId = e.target.deliveryman.value;
     const approxDeliveryDate = format(e.target.approxDeliveryDate.value, 'yyyy/MM/dd');
     const assignedInfo = {deliverymanId, approxDeliveryDate};
-    console.log(assignedInfo);
+    // console.log(assignedInfo);
     try {
       const res = await axiosSecure.patch(`/assignDeliveryman/${parcelId}`, assignedInfo);
       if (res.data.acknowledged) {
