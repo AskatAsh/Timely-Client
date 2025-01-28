@@ -86,14 +86,14 @@ const UserProfile = () => {
         }}
       />
       <form onSubmit={handleSubmit(updateProfile)}>
-        <div className="flex items-center gap-4 p-6">
-          <div className="relative">
+        <div className="flex items-center gap-2 sm:gap-4 p-4 sm:p-6 relative">
+          <div className="border rounded-full overflow-hidden">
             <img
-              className="w-20 rounded-full bg-background"
+              className="w-16 sm:w-20 h-16 sm:h-20 object-cover bg-background"
               src={user?.photoURL}
               alt="user image"
             />
-            <Button size="xs" className="absolute -bottom-5 -right-5">
+            <Button size="xs" className="absolute top-24 left-16 sm:left-20">
               <label htmlFor="userImage">
                 <FaEdit />
               </label>

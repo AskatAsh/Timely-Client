@@ -5,16 +5,17 @@ import MainLayout from "./../layouts/MainLayout";
 import Home from "./../pages/Home/Home";
 import Login from "./../pages/Auth/Login";
 import SignUp from "./../pages/Auth/SignUp";
-import BookParcel from './../pages/Dashboard/User/BookParcel';
-import UserProfile from './../pages/Dashboard/User/UserProfile';
-import MyParcels from './../pages/Dashboard/User/MyParcels';
-import AdminDashboard from './../pages/Dashboard/Admin/AdminDashboard';
+import BookParcel from "./../pages/Dashboard/User/BookParcel";
+import UserProfile from "./../pages/Dashboard/User/UserProfile";
+import MyParcels from "./../pages/Dashboard/User/MyParcels";
+import AdminDashboard from "./../pages/Dashboard/Admin/AdminDashboard";
 import AllParcels from "./../pages/Dashboard/Admin/AllParcels";
-import AllUsers from './../pages/Dashboard/Admin/AllUsers';
-import AllDeliveryman from './../pages/Dashboard/Admin/AllDeliveryman';
+import AllUsers from "./../pages/Dashboard/Admin/AllUsers";
+import AllDeliveryman from "./../pages/Dashboard/Admin/AllDeliveryman";
 import MyDeliveryList from "./../pages/Dashboard/Deliveryman/MyDeliveryList";
-import UpdateParcel from './../pages/Dashboard/User/UpdateParcel';
-import MyReviews from './../pages/Dashboard/Deliveryman/MyReviews';
+import UpdateParcel from "./../pages/Dashboard/User/UpdateParcel";
+import MyReviews from "./../pages/Dashboard/Deliveryman/MyReviews";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -43,52 +44,56 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <Dashboard />,
+    element: (
+      <PrivateRoute>
+        <Dashboard />
+      </PrivateRoute>
+    ),
     children: [
       // user routes
       {
-        path: 'userProfile',
-        element: <UserProfile />
+        path: "userProfile",
+        element: <UserProfile />,
       },
       {
-        path: 'bookParcel',
-        element: <BookParcel />
+        path: "bookParcel",
+        element: <BookParcel />,
       },
       {
-        path: 'updateParcel/:id',
-        element: <UpdateParcel />
+        path: "updateParcel/:id",
+        element: <UpdateParcel />,
       },
       {
-        path: 'myParcels',
-        element: <MyParcels />
+        path: "myParcels",
+        element: <MyParcels />,
       },
       // admin routes
       {
-        path: 'adminDashboard',
-        element: <AdminDashboard />
+        path: "adminDashboard",
+        element: <AdminDashboard />,
       },
       {
-        path: 'allParcels',
-        element: <AllParcels />
+        path: "allParcels",
+        element: <AllParcels />,
       },
       {
-        path: 'allUsers',
-        element: <AllUsers />
+        path: "allUsers",
+        element: <AllUsers />,
       },
       {
-        path: 'allDeliveryman',
-        element: <AllDeliveryman />
+        path: "allDeliveryman",
+        element: <AllDeliveryman />,
       },
       // deliverman routes
       {
-        path: 'myDeliveryList',
-        element: <MyDeliveryList />
+        path: "myDeliveryList",
+        element: <MyDeliveryList />,
       },
       {
-        path: 'myReviews',
-        element: <MyReviews />
+        path: "myReviews",
+        element: <MyReviews />,
       },
-    ]
+    ],
   },
 ]);
 export default router;
