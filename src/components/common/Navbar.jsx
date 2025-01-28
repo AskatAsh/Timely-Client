@@ -99,18 +99,7 @@ const Navbar = () => {
         About Us
       </NavLink>
       <NavLink
-        to="/menu"
-        onClick={() => setIsMenuOpen(false)}
-        className={({ isActive }) =>
-          isActive
-            ? "text-primary"
-            : "hover:text-primary transition-all duration-200"
-        }
-      >
-        Our Menu
-      </NavLink>
-      <NavLink
-        to="/shop"
+        to="/auth/signup"
         onClick={() => setIsMenuOpen(false)}
         className={({ isActive }) =>
           isActive
@@ -118,7 +107,7 @@ const Navbar = () => {
             : "hover:text-primary transition-all duration-200"
         }
       >
-        <span className="max-[500px]:hidden">Our Shop </span>
+        <span className="max-[500px]:hidden">Register</span>
       </NavLink>
     </>
   );
