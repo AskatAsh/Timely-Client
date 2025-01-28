@@ -4,7 +4,6 @@ import useGetTopDeliveryman from "./../../../hooks/useGetTopDeliveryman";
 
 const TopDeliveryMen = () => {
   const [topDeliveryman] = useGetTopDeliveryman();
-  console.log(topDeliveryman);
 
   return (
     <section className="my-20 max-w-7xl w-full px-6 mx-auto">
