@@ -151,6 +151,22 @@ const UserProfile = () => {
                 />
               </dd>
             </div>
+            <div className="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt className="text-sm font-medium text-text-500">
+                User verification
+              </dt>
+              <dd className="mt-1 text-sm text-text sm:mt-0 sm:col-span-2">
+                {user?.emailVerified ? "Verified" : "Not Verified"}
+              </dd>
+            </div>
+            <div className="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt className="text-sm font-medium text-text-500">
+                Last Login At
+              </dt>
+              <dd className="mt-1 text-sm text-text sm:mt-0 sm:col-span-2">
+                {user?.metadata?.lastSignInTime || "N/A"}
+              </dd>
+            </div>
           </dl>
         </div>
         <Button type="submit" className="m-6 bg-primary-800">
