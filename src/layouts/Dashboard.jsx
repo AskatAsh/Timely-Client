@@ -124,6 +124,20 @@ const Dashboard = () => {
                     const activeClasses = isActive ? "bg-primary-400" : "";
                     return `${baseClasses} ${activeClasses}`;
                   }}
+                  to="/dashboard/userProfile"
+                >
+                  <BsPersonBoundingBox></BsPersonBoundingBox>
+                  My Profile
+                </NavLink>
+              </li>
+              <li className="" onClick={() => setOpenSidebar(false)}>
+                <NavLink
+                  className={({ isActive }) => {
+                    const baseClasses =
+                      "hover:bg-primary-400 rounded-lg p-2 my-2 text-text flex items-center gap-2";
+                    const activeClasses = isActive ? "bg-primary-400" : "";
+                    return `${baseClasses} ${activeClasses}`;
+                  }}
                   to="/dashboard/myDeliveryList"
                 >
                   <FaList></FaList>
