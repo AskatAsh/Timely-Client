@@ -18,10 +18,10 @@ const TopDeliveryMen = () => {
         {topDeliveryman.map((deliveryman) => (
           <div
             key={deliveryman.deliverymanId}
-            className="border border-secondary-700 rounded-3xl"
+            className="border border-secondary-700 rounded-3xl overflow-hidden"
           >
             <img
-              className="rounded-t-2xl w-full object-cover aspect-[3/2.5] border border-secondary-500"
+              className="w-full object-cover aspect-[3/2.5] border border-secondary-500"
               src={deliveryman?.image}
               alt="drone delivery icon"
             />
