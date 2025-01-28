@@ -4,6 +4,7 @@ import useGetTopDeliveryman from "./../../../hooks/useGetTopDeliveryman";
 
 const TopDeliveryMen = () => {
   const [topDeliveryman] = useGetTopDeliveryman();
+  console.log(topDeliveryman);
 
   return (
     <section className="my-20 max-w-7xl w-full px-6 mx-auto">
@@ -22,7 +23,7 @@ const TopDeliveryMen = () => {
           >
             <img
               className="rounded-t-2xl w-full object-cover aspect-[3/2.5] border border-secondary-500"
-              src="https://i.ibb.co/s9vCQF1/portrait-interesting-young-man-winter-clothes-158595-914.jpg"
+              src={deliveryman?.image}
               alt="drone delivery icon"
             />
             <div className="text-center py-6 px-4">
@@ -40,10 +41,10 @@ const TopDeliveryMen = () => {
                 />
                 <span className="font-bold">{deliveryman?.averageRating}/5</span>
               </div>
-              <h3 className="text-xl font-bold text-text pb-4">
+              <h3 className="text-2xl font-extrabold text-text pb-4">
                 {deliveryman?.name}
               </h3>
-              <p className="text-text-600 font-medium">
+              <p className="text-text-600 font-bold">
                 <span className="text-primary">{deliveryman?.totalDeliveries}+</span> percels delivered
               </p>
             </div>
