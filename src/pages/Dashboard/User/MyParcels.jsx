@@ -135,39 +135,41 @@ const MyParcels = () => {
                 <TableCell>{parcel?.bookingDate}</TableCell>
                 <TableCell>{parcel?.deliverymanId || "N/A"}</TableCell>
                 <TableCell>
-                  {parcel?.status}
-                  <br />
-                  {/* add review button */}
-                  {parcel?.status === "delivered" ? (
-                    <Button
-                      onClick={() => {
-                        setIsOpen(true);
-                        setParcel(parcel);
-                      }}
-                      size="xs"
-                      className="bg-green-600 "
-                    >
-                      Add Review
-                    </Button>
-                  ) : (
-                    ""
-                  )}
-                  {/* pay button */}
-                  {parcel?.status === "pending" ? (
-                    <Link
-                      className="bg-accent rounded-sm text-xs font-medium text-white px-2 py-1"
-                      to="/dashboard/payment"
-                      state={{
-                        amount: parcel?.price,
-                        parcelId: parcel._id,
-                        phone: parcel.phone,
-                      }}
-                    >
-                      Pay Now
-                    </Link>
-                  ) : (
-                    ""
-                  )}
+                  <div className="flex flex-col items-center gap-1">
+                    {parcel?.status}
+                    {`${parcel?.paymentStatus ? `[${parcel?.paymentStatus}]`: ""}`}
+                    {/* add review button */}
+                    {parcel?.status === "delivered" ? (
+                      <Button
+                        onClick={() => {
+                          setIsOpen(true);
+                          setParcel(parcel);
+                        }}
+                        size="xs"
+                        className="bg-green-600 "
+                      >
+                        Add Review
+                      </Button>
+                    ) : (
+                      ""
+                    )}
+                    {/* pay button */}
+                    {parcel?.paymentStatus !== "paid" ? (
+                      <Link
+                        className="bg-accent rounded-sm text-xs font-medium text-white px-2 py-1"
+                        to="/dashboard/payment"
+                        state={{
+                          amount: parcel?.price,
+                          parcelId: parcel._id,
+                          phone: parcel.phone,
+                        }}
+                      >
+                        Pay Now
+                      </Link>
+                    ) : (
+                      ""
+                    )}
+                  </div>
                 </TableCell>
                 <TableCell className="flex flex-col gap-2">
                   <Button
