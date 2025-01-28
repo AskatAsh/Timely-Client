@@ -11,7 +11,7 @@ const PrivateRoute = ({ children }) => {
     if(loading){
         return (
             <div className="max-w-4xl w-11/12 mx-auto flex items-center justify-center py-20">
-                <img className="w-10 object-cover" src={loadingImage} alt="Loading truck gif image" />
+                <img className="w-30 object-cover" src={loadingImage} alt="Loading truck gif image" />
             </div>
         )
     }
