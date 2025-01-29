@@ -31,9 +31,9 @@ const AllDeliveryman = () => {
               <TableRow key={user._id}>
                 <TableCell>{idx + 1}</TableCell>
                 <TableCell>{user?.name}</TableCell>
-                <TableCell>{user?.phone || user?.email}</TableCell>
-                <TableCell>{user?.totalParcels || "N/A"}</TableCell>
-                <TableCell>{user?.totalSpent || "N/A"}</TableCell>
+                <TableCell>{user?.phone || "N/A"}</TableCell>
+                <TableCell>{user?.parcelsDelivered || "N/A"}</TableCell>
+                <TableCell>{user?.averageReview || "N/A"}</TableCell>
               </TableRow>
             ))}
           </TableBody>
