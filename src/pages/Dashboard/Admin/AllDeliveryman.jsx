@@ -19,7 +19,7 @@ const AllDeliveryman = () => {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>n.</TableHead>
+              <TableHead>No.</TableHead>
               <TableHead>Username</TableHead>
               <TableHead>Phone/Email</TableHead>
               <TableHead>Parcels Delivered</TableHead>

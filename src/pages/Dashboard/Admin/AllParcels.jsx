@@ -100,10 +100,10 @@ const AllParcels = () => {
       />
       <h1 className="text-2xl font-bold mb-4">All Parcels</h1>
       <p className="mb-4">Total parcels: {parcelsData.length}</p>
-      <div className="flex items-center gap-4 bg-primary-100 px-4 py-2 rounded-lg my-4">
+      <div className="flex items-center flex-wrap gap-4 bg-primary-100 px-4 py-2 rounded-lg my-4">
         <form
           onSubmit={handleSubmit(filterByDate)}
-          className="flex items-center gap-4 "
+          className="flex items-center gap-4 flex-wrap"
         >
           <h3 className="text-xl font-bold">Filter by Date:</h3>
           <div className="flex items-center gap-2">
