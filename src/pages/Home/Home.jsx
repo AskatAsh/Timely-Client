@@ -6,6 +6,7 @@ import TopDeliveryMen from "./Sections/TopDeliveryMen";
 import FAQ from "./Sections/FAQ";
 import Testimonials from "./Sections/Testimonials";
 import HowItWorks from "./Sections/HowItWorks";
+import NewsLetter from "./Sections/NewsLetter";
 
 const Home = () => {
     return (
@@ -31,6 +32,9 @@ const Home = () => {
 
             {/* Testimonials */}
             <Testimonials />
+
+            {/* Subscribe to Newsletter */}
+            <NewsLetter />
 
             {/* FAQ Sections */}
             <FAQ />
