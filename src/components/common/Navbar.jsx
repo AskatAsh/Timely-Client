@@ -124,17 +124,17 @@ const Navbar = () => {
         {/* left side */}
         <div className="flex items-center justify-start gap-10">
           {/* Logo */}
-          <div className="text-lg sm:text-2xl font-semibold flex items-center gap-1">
-            <Link href="/" className="text-text flex flex-col">
+          <Link to="/" className="text-lg sm:text-2xl font-semibold flex items-center gap-1">
+            <div className="text-text flex flex-col">
               <img
                 className="w-8 sm:w-10 object-cover"
                 src={logo}
                 alt="logo of timely app"
                 aria-label="timely website logo"
               />
-            </Link>
+            </div>
             <strong className="text-text font-bold">Timely</strong>
-          </div>
+          </Link>
           {/* Desktop Nav Links */}
           <nav className="hidden lg:flex items-center gap-6 font-medium text-text">
             {navlinks}

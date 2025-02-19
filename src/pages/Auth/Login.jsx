@@ -8,6 +8,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { FaGoogle } from "react-icons/fa";
 import useAxiosPublic from "./../../hooks/useAxiosPublic";
+import logo from "../../../src/assets/icons/timely-logo.png";
+import { HiOutlineLightBulb } from "react-icons/hi";
+import { MdOutlineDarkMode } from "react-icons/md";
+import useTheme from "./../../hooks/useTheme";
 
 const Login = () => {
   const { handleSocialLogin, loading } = useSocialLogin();
@@ -15,6 +19,7 @@ const Login = () => {
   const { signIn } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const { theme, toggleTheme } = useTheme();
 
   const from = location.state?.from?.pathname || "/";
 
@@ -61,10 +66,29 @@ const Login = () => {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center my-4">
+    <section className="min-h-screen flex items-center justify-center my-10">
       <Helmet>
         <title>Timely | Login</title>
       </Helmet>
+      <div className="absolute top-5 right-5 md:left-5 md:right-auto flex gap-3 items-center flex-row-reverse">
+        {/* theme toggle button */}
+        <div className="text-2xl cursor-pointer" onClick={() => toggleTheme()}>
+          {theme === "dark" ? (
+            <HiOutlineLightBulb className="text-yellow-400" />
+          ) : (
+            <MdOutlineDarkMode />
+          )}
+        </div>
+        {/* Logo linked to homepage */}
+        <Link to="/" className="text-text flex flex-col">
+          <img
+            className="w-8 sm:w-10 object-cover"
+            src={logo}
+            alt="logo of timely app"
+            aria-label="timely website logo"
+          />
+        </Link>
+      </div>
       <div className="bg-transperant w-full max-w-5xl flex flex-col sm:flex-row items-center justify-between gap-6 mx-3">
         {/* Left or top side - Illustration */}
         <div className="flex items-center justify-center bg-transperant rounded-2xl overflow-hidden mb-5 sm:mb-0">
