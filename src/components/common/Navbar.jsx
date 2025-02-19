@@ -77,7 +77,7 @@ const Navbar = () => {
         Home
       </NavLink>
       <NavLink
-        to="/contact"
+        to="/contactus"
         onClick={() => setIsMenuOpen(false)}
         className={({ isActive }) =>
           isActive

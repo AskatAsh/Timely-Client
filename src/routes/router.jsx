@@ -18,6 +18,7 @@ import MyReviews from "./../pages/Dashboard/Deliveryman/MyReviews";
 import PrivateRoute from "./PrivateRoute";
 import Payment from './../pages/Dashboard/User/Payment/Payment';
 import PaymentSuccess from './../pages/Dashboard/User/Payment/PaymentSuccess';
+import ContactUs from './../pages/Contact/ContactUs';
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home />,
       },
+      {
+        path: '/contactus',
+        element: <ContactUs />
+      }
     ],
   },
   {
