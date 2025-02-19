@@ -107,7 +107,7 @@ const Navbar = () => {
             : "hover:text-primary transition-all duration-200"
         }
       >
-        <span className="max-[500px]:hidden">Register</span>
+        <span className="max-[500px]:hidden">Sign Up</span>
       </NavLink>
     </>
   );
