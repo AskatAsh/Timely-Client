@@ -8,7 +8,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 import useTheme from "./../../hooks/useTheme";
 import { RiMenu3Fill } from "react-icons/ri";
 import { MdOutlineDarkMode } from "react-icons/md";
-import { BsLightningCharge } from "react-icons/bs";
+import { HiOutlineLightBulb } from "react-icons/hi";
 import { Button } from "../ui/button";
 import { Bounce, toast } from "react-toastify";
 import useIsAdmin from "./../../hooks/useIsAdmin";
@@ -114,7 +114,7 @@ const Navbar = () => {
 
   return (
     <header
-      className={`sticky top-0 left-0 w-full border-b border-secondary bg-background`}
+      className={`sticky top-0 left-0 w-full border-b border-secondary bg-background z-50`}
     >
       <div
         className={`max-w-[1440px] mx-auto relative flex items-center justify-between transition-all duration-200 px-4 ${
@@ -149,7 +149,7 @@ const Navbar = () => {
             onClick={() => toggleTheme()}
           >
             {theme === "dark" ? (
-              <BsLightningCharge className="text-yellow-400" />
+              <HiOutlineLightBulb className="text-yellow-400" />
             ) : (
               <MdOutlineDarkMode />
             )}
