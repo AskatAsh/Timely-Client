@@ -77,7 +77,7 @@ const UserProfile = () => {
   };
 
   return (
-    <section className="bg-background overflow-hidden shadow rounded-lg border">
+    <section className="bg-background overflow-hidden shadow rounded-lg border max-w-4xl mx-auto">
       <SnackbarProvider
         autoHideDuration={2000}
         anchorOrigin={{
