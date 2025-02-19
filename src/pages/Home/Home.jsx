@@ -4,6 +4,7 @@ import OurFeatures from "./Sections/OurFeatures";
 import Stats from "./Sections/Stats";
 import TopDeliveryMen from "./Sections/TopDeliveryMen";
 import FAQ from "./Sections/FAQ";
+import Testimonials from "./Sections/Testimonials";
 
 const Home = () => {
     return (
@@ -23,6 +24,9 @@ const Home = () => {
 
             {/* Top delivery men */}
             <TopDeliveryMen />
+
+            {/* Testimonials */}
+            <Testimonials />
 
             {/* FAQ Sections */}
             <FAQ />
