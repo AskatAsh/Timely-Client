@@ -91,13 +91,13 @@ const SignUp = () => {
       <Helmet>
         <title>Timely | Sign Up</title>
       </Helmet>
-      <div className="bg-transperant w-full max-w-5xl flex flex-col sm:flex-row items-center mx-3">
+      <div className="bg-transperant w-full max-w-5xl flex flex-col sm:flex-row items-center justify-between gap-6 mx-3">
         {/* Left or top side - Illustration */}
         <div className="flex items-center justify-center bg-transperant rounded-2xl overflow-hidden mb-8">
           <img
             src={signupImage}
             alt="Signup Illustration gif image"
-            className="object-cover w-40"
+            className="object-cover w-40 sm:w-full"
           />
         </div>
 
