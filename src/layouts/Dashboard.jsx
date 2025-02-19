@@ -9,18 +9,23 @@ import {
   FaThumbsUp,
   FaUsers,
 } from "react-icons/fa";
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import { useState } from "react";
 import { RiMenuFold4Line } from "react-icons/ri";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { BsPersonBoundingBox } from "react-icons/bs";
-import useIsAdmin from './../hooks/useIsAdmin';
-import useIsDeliveryman from './../hooks/useIsDeliveryman';
+import useIsAdmin from "./../hooks/useIsAdmin";
+import useIsDeliveryman from "./../hooks/useIsDeliveryman";
+import { HiOutlineLightBulb } from "react-icons/hi";
+import { MdOutlineDarkMode } from "react-icons/md";
+import logo from "../assets/icons/timely-logo.png";
+import useTheme from "./../hooks/useTheme";
 
 const Dashboard = () => {
   const [openSidebar, setOpenSidebar] = useState(false);
   const [isAdmin] = useIsAdmin();
   const [isDeliveryman] = useIsDeliveryman();
+  const { theme, toggleTheme } = useTheme();
 
   return (
     <div className="sm:flex font-display">
@@ -35,7 +40,9 @@ const Dashboard = () => {
       {/* dashboard side bar */}
       <aside
         className={`min-h-screen absolute md:static z-10 transition-all duration-300 ${
-          openSidebar ? "overflow-visible w-full bg-[#00000050]" : "overflow-hidden"
+          openSidebar
+            ? "overflow-visible w-full bg-[#00000050]"
+            : "overflow-hidden"
         }`}
       >
         {/* sidebar close icon */}
@@ -48,11 +55,38 @@ const Dashboard = () => {
         >
           <IoCloseCircleOutline size={32} />
         </button>
+
+        {/* Navigation links for dashboard user of different roles */}
         <ul
           className={`menu overflow-y-auto flex-nowrap transition-all duration-300 sm:p-4 h-full md:w-52 lg:w-64 overflow-hidden absolute md:static z-50 bg-primary-400 backdrop-blur-md ${
             openSidebar ? "w-52 sm:w-64 p-4" : "w-0 p-0"
           }`}
         >
+          <div className="flex gap-6 items-center mb-6">
+            {/* Logo linked to homepage */}
+            <Link to="/" className="text-text flex gap-2 items-center">
+              <img
+                className="w-8 sm:w-10 object-cover"
+                src={logo}
+                alt="logo of timely app"
+                aria-label="timely website logo"
+                />
+                <span className="font-bold text-lg">Timely</span>
+            </Link>
+            {/* theme toggle button */}
+            <div
+              className="text-2xl cursor-pointer"
+              onClick={() => toggleTheme()}
+            >
+              {theme === "dark" ? (
+                <HiOutlineLightBulb className="text-yellow-400" />
+              ) : (
+                <MdOutlineDarkMode />
+              )}
+            </div>
+          </div>
+
+          {/* routes for different users */}
           {isAdmin ? (
             // admin routes
             <>
@@ -231,7 +265,7 @@ const Dashboard = () => {
                 const activeClasses = isActive ? "bg-primary-400" : "";
                 return `${baseClasses} ${activeClasses}`;
               }}
-              to="/about"
+              to="/aboutus"
             >
               <FaBook></FaBook>
               About
@@ -245,7 +279,7 @@ const Dashboard = () => {
                 const activeClasses = isActive ? "bg-primary-400" : "";
                 return `${baseClasses} ${activeClasses}`;
               }}
-              to="/shop/contact"
+              to="/contactus"
             >
               <FaEnvelope></FaEnvelope>
               Contact

@@ -107,7 +107,7 @@ const Navbar = () => {
             : "hover:text-primary transition-all duration-200"
         }
       >
-        <span className="max-[500px]:hidden">Sign Up</span>
+        <span>Sign Up</span>
       </NavLink>
     </>
   );
@@ -124,7 +124,10 @@ const Navbar = () => {
         {/* left side */}
         <div className="flex items-center justify-start gap-10">
           {/* Logo */}
-          <Link to="/" className="text-lg sm:text-2xl font-semibold flex items-center gap-1">
+          <Link
+            to="/"
+            className="text-lg sm:text-2xl font-semibold flex items-center gap-1"
+          >
             <div className="text-text flex flex-col">
               <img
                 className="w-8 sm:w-10 object-cover"
@@ -154,6 +157,8 @@ const Navbar = () => {
               <MdOutlineDarkMode />
             )}
           </div>
+
+          {/* If user logged in show user and notification icon */}
           {user && user?.email ? (
             <>
               <NavLink
@@ -168,15 +173,64 @@ const Navbar = () => {
                 />
               </NavLink>
 
-              <button
-                onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
-                className="hover:text-primary transition-all duration-200 flex items-center"
-              >
-                {
-                  user?.photoURL ? <img className="w-8 h-8 object-cover rounded-full border" src={user?.photoURL} alt={`image of ${user?.displayName || "user"}`} /> : <FaUserCircle className="text-2xl cursor-pointer text-text" />
-                }
-                
-              </button>
+              <div>
+                <button
+                  onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+                  className="hover:text-primary transition-all duration-200 flex items-center"
+                >
+                  {user?.photoURL ? (
+                    <img
+                      className="w-8 h-8 object-cover rounded-full border"
+                      src={user?.photoURL}
+                      alt={`image of ${user?.displayName || "user"}`}
+                    />
+                  ) : (
+                    <FaUserCircle className="text-2xl cursor-pointer text-text" />
+                  )}
+                </button>
+                {/* User menu modal */}
+                {isUserMenuOpen && (
+                  <ul className="absolute top-4/3 right-5 z-40 shadow-md rounded-lg flex flex-col gap-3 max-w-fit p-3 text-sm bg-background">
+                    <li className="text-gray-600 font-medium">
+                      {user?.displayName || user?.email || "User"}
+                    </li>
+                    <li>
+                      <Link
+                        state={{
+                          role: `${
+                            isAdmin
+                              ? "Admin"
+                              : isDeliveryman
+                              ? "Deliveryman"
+                              : "User"
+                          }`,
+                        }}
+                        to={`/dashboard/${
+                          isAdmin
+                            ? "adminDashboard"
+                            : isDeliveryman
+                            ? "myDeliveryList"
+                            : "userProfile"
+                        }`}
+                        className="text-text font-semibold hover:text-primary"
+                      >
+                        Dashboard
+                      </Link>
+                    </li>
+                    {/* sign out button */}
+                    <li className="mt-1">
+                      <Button
+                        onClick={handleLogOut}
+                        className="rounded-md w-full text-xs text-text bg-accent"
+                        variant="default"
+                        size="sm"
+                      >
+                        Sign Out
+                      </Button>
+                    </li>
+                  </ul>
+                )}
+              </div>
             </>
           ) : (
             <NavLink
@@ -218,45 +272,6 @@ const Navbar = () => {
             {navlinks}
           </nav>
         </div>
-      )}
-
-      {/* User menu modal */}
-      {isUserMenuOpen && (
-        <ul className="absolute top-4/3 right-5 z-40 shadow-md rounded-lg flex flex-col gap-3 max-w-fit p-3 text-sm bg-background">
-          <li className="text-gray-600 font-medium">
-            {user?.displayName || user?.email || "User"}
-          </li>
-          <li>
-            <Link
-              state={{
-                role: `${
-                  isAdmin ? "Admin" : isDeliveryman ? "Deliveryman" : "User"
-                }`,
-              }}
-              to={`/dashboard/${
-                isAdmin
-                  ? "adminDashboard"
-                  : isDeliveryman
-                  ? "myDeliveryList"
-                  : "userProfile"
-              }`}
-              className="text-text font-semibold hover:text-primary"
-            >
-              Dashboard
-            </Link>
-          </li>
-          {/* sign out button */}
-          <li className="mt-1">
-            <Button
-              onClick={handleLogOut}
-              className="rounded-md w-full text-xs text-text bg-accent"
-              variant="default"
-              size="sm"
-            >
-              Sign Out
-            </Button>
-          </li>
-        </ul>
       )}
     </header>
   );

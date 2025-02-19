@@ -37,8 +37,8 @@ const Login = () => {
       };
     } else if (role === "user") {
       credentials = {
-        email: "anik@gmail.com",
-        password: "Anik@2025",
+        email: "rahimkarim@gmail.com",
+        password: "Rahimkarim@2025",
       };
     } else if (role === "deliveryman") {
       credentials = {
