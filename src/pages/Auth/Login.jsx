@@ -6,12 +6,13 @@ import useSocialLogin from "@/hooks/useSocialLogin";
 import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { FaGoogle } from "react-icons/fa";
+import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa";
 import useAxiosPublic from "./../../hooks/useAxiosPublic";
 import logo from "../../../src/assets/icons/timely-logo.png";
 import { HiOutlineLightBulb } from "react-icons/hi";
 import { MdOutlineDarkMode } from "react-icons/md";
 import useTheme from "./../../hooks/useTheme";
+import { useState } from "react";
 
 const Login = () => {
   const { handleSocialLogin, loading } = useSocialLogin();
@@ -20,8 +21,35 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { theme, toggleTheme } = useTheme();
+  const [showPassword, setShowPassword] = useState(false);
+  const [credentials, setCredentials] = useState({});
 
   const from = location.state?.from?.pathname || "/";
+
+  // add login credentials based on user role
+  const handleCradentials = (role) => {
+    let credentials = null;
+
+    if (role === "admin") {
+      credentials = {
+        email: "abdulaskat@gmail.com",
+        password: "Askat@2025",
+      };
+    } else if (role === "user") {
+      credentials = {
+        email: "anik@gmail.com",
+        password: "Anik@2025",
+      };
+    } else if (role === "deliveryman") {
+      credentials = {
+        email: "joshim@gmail.com",
+        password: "Joshim@2025",
+      };
+    }
+    if (credentials) {
+      setCredentials(credentials);
+    }
+  };
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -102,7 +130,27 @@ const Login = () => {
         {/* Right or bottom Side - Login Form */}
         <div className="w-full lg:w-1/2 p-8 border-2 rounded-2xl">
           <h2 className="text-3xl font-bold text-center mb-8">Welcome Back!</h2>
-
+          <p>Please select the role you want to login as:</p>
+          <div className="flex flex-wrap items-center justify-between gap-4 mb-8 mt-4">
+            <Button
+              className="flex-1 bg-accent-800 hover:bg-accent text-text"
+              onClick={() => handleCradentials("user")}
+            >
+              User
+            </Button>
+            <Button
+              className="flex-1 bg-accent-800 hover:bg-accent text-text"
+              onClick={() => handleCradentials("admin")}
+            >
+              Admin
+            </Button>
+            <Button
+              className="flex-1 bg-accent-800 hover:bg-accent text-text"
+              onClick={() => handleCradentials("deliveryman")}
+            >
+              Deliveryman
+            </Button>
+          </div>
           <form onSubmit={handleLogin}>
             <div className="mb-4">
               <label htmlFor="email" className="block text-sm font-medium mb-2">
@@ -112,6 +160,7 @@ const Login = () => {
                 type="email"
                 name="email"
                 id="email"
+                defaultValue={credentials.email}
                 placeholder="Type here"
                 className="input input-bordered w-full"
               />
@@ -124,17 +173,27 @@ const Login = () => {
               >
                 Password
               </label>
-              <Input
-                type="password"
-                name="password"
-                id="password"
-                placeholder="Enter your password"
-                className="input input-bordered w-full"
-              />
+              <div className="relative">
+                <Input
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  id="password"
+                  defaultValue={credentials.password}
+                  placeholder="Enter your password"
+                  className="input input-bordered w-full"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-orange-500"
+                >
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </button>
+              </div>
             </div>
 
             <Button className="btn bg-accent-700 text-text font-semibold hover:bg-golden w-full">
-              Sign In
+              Login
             </Button>
           </form>
 
