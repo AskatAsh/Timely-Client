@@ -19,6 +19,7 @@ import PrivateRoute from "./PrivateRoute";
 import Payment from './../pages/Dashboard/User/Payment/Payment';
 import PaymentSuccess from './../pages/Dashboard/User/Payment/PaymentSuccess';
 import ContactUs from './../pages/Contact/ContactUs';
+import AboutUs from './../pages/About/AboutUs';
 
 const router = createBrowserRouter([
   {
@@ -32,7 +33,11 @@ const router = createBrowserRouter([
       {
         path: '/contactus',
         element: <ContactUs />
-      }
+      },
+      {
+        path: '/aboutus',
+        element: <AboutUs />
+      },
     ],
   },
   {

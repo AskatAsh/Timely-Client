@@ -88,7 +88,7 @@ const Navbar = () => {
         Contact Us
       </NavLink>
       <NavLink
-        to="/about"
+        to="/aboutus"
         onClick={() => setIsMenuOpen(false)}
         className={({ isActive }) =>
           isActive
