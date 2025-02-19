@@ -91,8 +91,8 @@ const SignUp = () => {
       <Helmet>
         <title>Timely | Sign Up</title>
       </Helmet>
-      <div className="bg-transperant w-full max-w-5xl flex flex-col items-center mx-3">
-        {/* Top Side - Illustration */}
+      <div className="bg-transperant w-full max-w-5xl flex flex-col sm:flex-row items-center mx-3">
+        {/* Left or top side - Illustration */}
         <div className="flex items-center justify-center bg-transperant rounded-2xl overflow-hidden mb-8">
           <img
             src={signupImage}
@@ -101,7 +101,7 @@ const SignUp = () => {
           />
         </div>
 
-        {/* Bottom Side - Login Form */}
+        {/* Rigth or bottom Side - Login Form */}
         <div className="w-full lg:w-1/2 p-8 border-2 rounded-2xl">
           <h2 className="text-3xl font-bold text-center mb-8">Sign Up</h2>
 

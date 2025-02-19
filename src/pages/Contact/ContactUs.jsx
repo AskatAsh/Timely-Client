@@ -1,3 +1,5 @@
+import { Helmet } from "react-helmet-async";
+
 const contactDetails = [
   {
     icon: (
@@ -67,6 +69,9 @@ const contactDetails = [
 const ContactUs = () => {
   return (
     <section className="py-10 bg-secondary-200 sm:py-16 lg:py-24">
+      <Helmet>
+        <title>Timely | Contact Us</title>
+      </Helmet>
       <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
         <div className="max-w-2xl mx-auto text-center">
           <h2 className="text-3xl font-bold leading-tight text-text-900 sm:text-4xl lg:text-5xl">
